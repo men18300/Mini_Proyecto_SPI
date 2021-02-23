@@ -5,11 +5,12 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "SPI.h"
 
 
 
 uint8_t contador;
+unsigned short t;
 
 
 // BEGIN CONFIG
@@ -29,14 +30,20 @@ uint8_t contador;
 
 void setup(void);
 void __interrupt() isr(void);
+//unsigned short escribiryleer(unsigned short x);
 
 void __interrupt() isr(void) {
 
     if (PIR1bits.ADIF == 1) {
         PORTD = ADRESH;
+        contador = PORTD;
         PIR1bits.ADIF = 0;
         __delay_ms(0.4);
         ADCON0bits.GO = 1;
+    } else if (SSPIF == 1) {
+        PORTE = spiRead();
+        spiWrite(PORTD);
+        SSPIF = 0;
     }
 }
 
@@ -44,7 +51,9 @@ int main() {
     setup();
     ADC(0, 0);
     ADCON0bits.GO_nDONE = 1;
-    while (1) {}
+    while (1) {
+
+    }
     return 0;
 }
 
@@ -63,6 +72,14 @@ void setup(void) {
     PORTE = 0;
     INTCONbits.GIE = 1; //Habilitamos las interrupciones
     INTCONbits.PEIE = 1;
-
     contador = 0;
+
+ 
+    INTCONbits.GIE = 1; // Habilitamos interrupciones
+    INTCONbits.PEIE = 1; // Habilitamos interrupciones PEIE
+    PIR1bits.SSPIF = 0; // Borramos bandera interrupción MSSP
+    PIE1bits.SSPIE = 1; // Habilitamos interrupción MSSP
+    TRISAbits.TRISA5 = 1; // Slave Select
+
+    spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 }

@@ -2819,11 +2819,48 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 extern char * ftoa(float f, int * status);
 # 7 "PICADC.c" 2
 
+# 1 "./SPI.h" 1
+# 17 "./SPI.h"
+typedef enum
+{
+    SPI_MASTER_OSC_DIV4 = 0b00100000,
+    SPI_MASTER_OSC_DIV16 = 0b00100001,
+    SPI_MASTER_OSC_DIV64 = 0b00100010,
+    SPI_MASTER_TMR2 = 0b00100011,
+    SPI_SLAVE_SS_EN = 0b00100100,
+    SPI_SLAVE_SS_DIS = 0b00100101
+}Spi_Type;
+
+typedef enum
+{
+    SPI_DATA_SAMPLE_MIDDLE = 0b00000000,
+    SPI_DATA_SAMPLE_END = 0b10000000
+}Spi_Data_Sample;
+
+typedef enum
+{
+    SPI_CLOCK_IDLE_HIGH = 0b00010000,
+    SPI_CLOCK_IDLE_LOW = 0b00000000
+}Spi_Clock_Idle;
+
+typedef enum
+{
+    SPI_IDLE_2_ACTIVE = 0b00000000,
+    SPI_ACTIVE_2_IDLE = 0b01000000
+}Spi_Transmit_Edge;
+
+
+void spiInit(Spi_Type, Spi_Data_Sample, Spi_Clock_Idle, Spi_Transmit_Edge);
+void spiWrite(char);
+unsigned spiDataReady();
+char spiRead();
+# 8 "PICADC.c" 2
 
 
 
 
 uint8_t contador;
+unsigned short t;
 
 
 
@@ -2844,13 +2881,19 @@ uint8_t contador;
 void setup(void);
 void __attribute__((picinterrupt(("")))) isr(void);
 
+
 void __attribute__((picinterrupt(("")))) isr(void) {
 
     if (PIR1bits.ADIF == 1) {
         PORTD = ADRESH;
+        contador = PORTD;
         PIR1bits.ADIF = 0;
         _delay((unsigned long)((0.4)*(8000000/4000.0)));
         ADCON0bits.GO = 1;
+    } else if (SSPIF == 1) {
+        PORTE = spiRead();
+        spiWrite(PORTD);
+        SSPIF = 0;
     }
 }
 
@@ -2858,7 +2901,11 @@ int main() {
     setup();
     ADC(0, 0);
     ADCON0bits.GO_nDONE = 1;
-    while (1) {}
+    while (1) {
+
+
+
+    }
     return 0;
 }
 
@@ -2877,6 +2924,13 @@ void setup(void) {
     PORTE = 0;
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
-
     contador = 0;
+# 95 "PICADC.c"
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    PIR1bits.SSPIF = 0;
+    PIE1bits.SSPIE = 1;
+    TRISAbits.TRISA5 = 1;
+
+    spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 }
