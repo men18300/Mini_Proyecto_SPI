@@ -6,8 +6,12 @@ void ADC(uint8_t ANA, uint8_t justificado) {
 
     ADCON0bits.ADON = 1; //ADC esta habilitado
     ADCON0bits.ADCS = 0b10; // Clock Fosc/32
-    ADCON1bits.VCFG1 = 0; //Voltaje de referencia a VSS
-    ADCON1bits.VCFG0 = 0; //Voltaje de referencia a VDD
+
+    TRISAbits.TRISA2 = 1;
+    TRISAbits.TRISA3 = 1;
+    ADCON1bits.VCFG1 = 1; //Voltaje de referencia a VSS
+    ADCON1bits.VCFG0 = 1; //Voltaje de referencia a VDD
+
     PIE1bits.ADIE = 1;
     PIR1bits.ADIF = 0;
 

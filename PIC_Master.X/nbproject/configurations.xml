@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>SPI.h</itemPath>
       <itemPath>lcd.h</itemPath>
+      <itemPath>USART.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -16,12 +17,14 @@
                    projectFiles="true">
       <itemPath>PIC_Master.c</itemPath>
       <itemPath>SPI.c</itemPath>
+      <itemPath>USART.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
                    projectFiles="false">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>../../Lab3DiegoMencos/LCD Interfacing/lcd.X/funclist</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

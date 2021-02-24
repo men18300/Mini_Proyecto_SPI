@@ -11,7 +11,7 @@
 
 
 uint8_t contador;
-int8_t temperatura;
+signed int temperatura;
 
 
 // BEGIN CONFIG
@@ -35,7 +35,8 @@ void __interrupt() isr(void);
 void __interrupt() isr(void) {
 
     if (PIR1bits.ADIF == 1) {
-        PORTD = ADRESH;
+        temperatura = ADRESH;
+        PORTD=temperatura;
         PIR1bits.ADIF = 0;
         __delay_ms(0.8);
         ADCON0bits.GO = 1;
@@ -50,13 +51,13 @@ int main() {
     PORTBbits.RB4 = 0;
     PORTBbits.RB5 = 0;
     while (1) {
-        spiWrite(PORTD);
+        spiWrite(temperatura);
         
-        if (PORTD >= 19) {
+        if (PORTD >= 113) {
             PORTBbits.RB3 = 1;
             PORTBbits.RB4 = 0;
             PORTBbits.RB5 = 0;
-        } else if (PORTD < 19 & PORTD >= 12) {
+        } else if (PORTD < 113 & PORTD >= 98) {
             PORTBbits.RB3 = 0;
             PORTBbits.RB4 = 1;
             PORTBbits.RB5 = 0;
@@ -88,6 +89,7 @@ void setup(void) {
     INTCONbits.PEIE = 1;
 
     contador = 0;
+    temperatura=0;
 
     INTCONbits.GIE = 1; // Habilitamos interrupciones
     INTCONbits.PEIE = 1; // Habilitamos interrupciones PEIE

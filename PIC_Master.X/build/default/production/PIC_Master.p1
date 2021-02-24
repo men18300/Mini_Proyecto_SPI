@@ -21,10 +21,35 @@ Version 4.0 HI-TECH Software Intermediate Code
 "92 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\pic.h
 [v __delay `JF1256 ~T0 @X0 0 e ]
 [p i __delay ]
+[t ~ __interrupt . k ]
+[t T2 __interrupt ]
+"543 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 543:     struct {
+[s S19 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S19 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF ]
+"542
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 542: typedef union {
+[u S18 `S19 1 ]
+[n S18 . . ]
+"553
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 553: extern volatile PIR1bits_t PIR1bits __attribute__((address(0x00C)));
+[v _PIR1bits `VS18 ~T0 @X0 0 e@12 ]
+"14 ./USART.h
+[; ;./USART.h: 14: char UART_get_char();
+[v _UART_get_char `(uc ~T0 @X0 0 e? ]
 [p mainexit ]
-"43 PIC_Master.c
-[; ;PIC_Master.c: 43: 
+"63 PIC_Master.c
+[; ;PIC_Master.c: 63:         Lcd_Write_Char(centenaV);
 [v _setup `(v ~T0 @X0 0 ef ]
+"11 ./USART.h
+[; ;./USART.h: 11: void UART_config();
+[v _UART_config `(v ~T0 @X0 0 e? ]
+"13
+[; ;./USART.h: 13: void UART_send_string(char* st_pt);
+[v _UART_send_string `(v ~T0 @X0 0 ef1`*uc ]
+"12
+[; ;./USART.h: 12: void UART_send_char(char bt);
+[v _UART_send_char `(v ~T0 @X0 0 ef1`uc ]
 "296 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 296:     struct {
 [s S10 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -45,7 +70,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 "49 ./SPI.h
 [; ;./SPI.h: 49: char spiRead();
 [v _spiRead `(uc ~T0 @X0 0 e? ]
-"3387 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+"65 PIC_Master.c
+[; ;PIC_Master.c: 65: 
+[v _conv_Numero_A_String `(v ~T0 @X0 0 ef1`uc ]
+"66
+[; ;PIC_Master.c: 66: 
+[v _conv_Numero_A_StringContador `(v ~T0 @X0 0 ef1`uc ]
+"67
+[; ;PIC_Master.c: 67:         PORTCbits.RC1 = 0;
+[v _conv_Numero_A_StringTemperatura `(v ~T0 @X0 0 ef1`uc ]
+"1140 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1140: extern volatile unsigned char RCREG __attribute__((address(0x01A)));
+[v _RCREG `Vuc ~T0 @X0 0 e@26 ]
+"3387
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3387: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
 [v _ANSEL `Vuc ~T0 @X0 0 e@392 ]
 "3449
@@ -104,7 +141,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "482
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 482: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
 [v _INTCONbits `VS15 ~T0 @X0 0 e@11 ]
-"126 PIC_Master.c
+"275 PIC_Master.c
+[; ;PIC_Master.c: 275:         valor = valor - (unidadVtemperatura * 100);
 [c E1473 32 33 34 35 36 37 .. ]
 [n E1473 . SPI_MASTER_OSC_DIV4 SPI_MASTER_OSC_DIV16 SPI_MASTER_OSC_DIV64 SPI_MASTER_TMR2 SPI_SLAVE_SS_EN SPI_SLAVE_SS_DIS  ]
 [c E1481 0 128 .. ]
@@ -726,206 +764,742 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./lcd.h: 116: }
 [e :UE 166 ]
 }
-"20 PIC_Master.c
-[; ;PIC_Master.c: 20: uint8_t contador;
-[; ;PIC_Master.c: 20: 
+"21 PIC_Master.c
+[; ;PIC_Master.c: 21: uint8_t contador;
+[; ;PIC_Master.c: 21:     UART_config();
 [v _contador `uc ~T0 @X0 1 e ]
-"21
-[; ;PIC_Master.c: 21: uint8_t slave1;
-[; ;PIC_Master.c: 21: 
-[v _slave1 `uc ~T0 @X0 1 e ]
 "22
-[; ;PIC_Master.c: 22: uint8_t slave2;
+[; ;PIC_Master.c: 22: uint8_t slave1;
 [; ;PIC_Master.c: 22: 
-[v _slave2 `uc ~T0 @X0 1 e ]
+[v _slave1 `uc ~T0 @X0 1 e ]
 "23
-[; ;PIC_Master.c: 23: uint8_t slave3;
-[; ;PIC_Master.c: 23: 
-[v _slave3 `uc ~T0 @X0 1 e ]
+[; ;PIC_Master.c: 23: uint8_t slave2;
+[; ;PIC_Master.c: 23:     UART_send_string("PRESIONE: ");
+[v _slave2 `uc ~T0 @X0 1 e ]
 "24
-[; ;PIC_Master.c: 24: unsigned short S1;
-[; ;PIC_Master.c: 24:         PORTCbits.RC2 = 0;
-[v _S1 `us ~T0 @X0 1 e ]
-"25
-[; ;PIC_Master.c: 25: unsigned short t;
-[; ;PIC_Master.c: 25:         _delay((unsigned long)((1)*(8000000/4000.0)));
-[v _t `us ~T0 @X0 1 e ]
-"28
-[; ;PIC_Master.c: 28:         slave1 = spiRead();
-[p x FOSC  =  HS  ]
+[; ;PIC_Master.c: 24: int8_t slave3;
+[; ;PIC_Master.c: 24:     UART_send_char(13);
+[v _slave3 `c ~T0 @X0 1 e ]
+"26
+[; ;PIC_Master.c: 26: uint16_t valor;
+[; ;PIC_Master.c: 26:     UART_send_char(13);
+[v _valor `ui ~T0 @X0 1 e ]
+"27
+[; ;PIC_Master.c: 27: unsigned char valorRX;
+[; ;PIC_Master.c: 27:     UART_send_string("B) Para mostrar el contador");
+[v _valorRX `uc ~T0 @X0 1 e ]
 "29
-[; ;PIC_Master.c: 29: 
-[p x WDTE  =  OFF  ]
+[; ;PIC_Master.c: 29: char unidadV;
+[; ;PIC_Master.c: 29:     UART_send_string("C)Para mostrar el Termometro");
+[v _unidadV `uc ~T0 @X0 1 e ]
 "30
-[; ;PIC_Master.c: 30:         _delay((unsigned long)((1)*(8000000/4000.0)));
-[p x PWRTE  =  OFF  ]
+[; ;PIC_Master.c: 30: char decenaV;
+[; ;PIC_Master.c: 30:     UART_send_char(13);
+[v _decenaV `uc ~T0 @X0 1 e ]
 "31
-[; ;PIC_Master.c: 31:         PORTCbits.RC2 = 1;
-[p x BOREN  =  ON  ]
-"32
-[; ;PIC_Master.c: 32: 
-[p x LVP  =  OFF  ]
+[; ;PIC_Master.c: 31: char centenaV;
+[; ;PIC_Master.c: 31: 
+[v _centenaV `uc ~T0 @X0 1 e ]
 "33
-[; ;PIC_Master.c: 33: 
-[p x CPD  =  OFF  ]
+[; ;PIC_Master.c: 33: char unidadVcontador;
+[; ;PIC_Master.c: 33:     Lcd_Write_String("S1:");
+[v _unidadVcontador `uc ~T0 @X0 1 e ]
 "34
-[; ;PIC_Master.c: 34:         PORTCbits.RC1 = 0;
-[p x WRT  =  OFF  ]
+[; ;PIC_Master.c: 34: char decenaVcontador;
+[; ;PIC_Master.c: 34:     Lcd_Set_Cursor(1, 8);
+[v _decenaVcontador `uc ~T0 @X0 1 e ]
 "35
-[; ;PIC_Master.c: 35:         _delay((unsigned long)((1)*(8000000/4000.0)));
-[p x CP  =  OFF  ]
+[; ;PIC_Master.c: 35: char centenaVcontador;
+[; ;PIC_Master.c: 35:     Lcd_Write_String("S2:");
+[v _centenaVcontador `uc ~T0 @X0 1 e ]
+"37
+[; ;PIC_Master.c: 37: char unidadVtemperatura;
+[; ;PIC_Master.c: 37:     Lcd_Write_String("S3:");
+[v _unidadVtemperatura `uc ~T0 @X0 1 e ]
 "38
-[; ;PIC_Master.c: 38:         slave2 = spiRead();
-[p x BOR4V  =  BOR40V    ]
+[; ;PIC_Master.c: 38: char decenaVtemperatura;
+[; ;PIC_Master.c: 38: 
+[v _decenaVtemperatura `uc ~T0 @X0 1 e ]
 "39
+[; ;PIC_Master.c: 39: char centenaVtemperatura;
 [; ;PIC_Master.c: 39: 
+[v _centenaVtemperatura `uc ~T0 @X0 1 e ]
+"40
+[; ;PIC_Master.c: 40: char signo;
+[; ;PIC_Master.c: 40:     while (1) {
+[v _signo `uc ~T0 @X0 1 e ]
+"48
+[; ;PIC_Master.c: 48:         _delay((unsigned long)((1)*(8000000/4000.0)));
+[p x FOSC  =  HS  ]
+"49
+[; ;PIC_Master.c: 49:         PORTCbits.RC2 = 1;
+[p x WDTE  =  OFF  ]
+"50
+[; ;PIC_Master.c: 50: 
+[p x PWRTE  =  OFF  ]
+"51
+[; ;PIC_Master.c: 51: 
+[p x BOREN  =  ON  ]
+"52
+[; ;PIC_Master.c: 52:         conv_Numero_A_String(slave1);
+[p x LVP  =  OFF  ]
+"53
+[; ;PIC_Master.c: 53:         Lcd_Set_Cursor(2, 1);
+[p x CPD  =  OFF  ]
+"54
+[; ;PIC_Master.c: 54:         Lcd_Write_Char(unidadV);
+[p x WRT  =  OFF  ]
+"55
+[; ;PIC_Master.c: 55: 
+[p x CP  =  OFF  ]
+"58
+[; ;PIC_Master.c: 58: 
+[p x BOR4V  =  BOR40V    ]
+"59
+[; ;PIC_Master.c: 59:         Lcd_Set_Cursor(2, 3);
 [p x WRT  =  OFF         ]
+[v $root$_isr `(v ~T0 @X0 0 e ]
+"69
+[; ;PIC_Master.c: 69: 
+[v _isr `(v ~T2 @X0 1 ef ]
+{
+[e :U _isr ]
+[f ]
+"71
+[; ;PIC_Master.c: 71:         slave2 = spiRead();
+[e $ ! == -> . . _PIR1bits 0 5 `i -> 1 `i 168  ]
+{
+"72
+[; ;PIC_Master.c: 72: 
+[e = _valorRX -> ( _UART_get_char ..  `uc ]
+"73
+[; ;PIC_Master.c: 73:         _delay((unsigned long)((1)*(8000000/4000.0)));
+[e ( __delay (1 -> * .0.4 / -> -> 8000000 `l `d .4000.0 `ul ]
+"74
+[; ;PIC_Master.c: 74:         PORTCbits.RC1 = 1;
+[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
+"75
+[; ;PIC_Master.c: 75: 
+}
+[e :U 168 ]
+"76
+[; ;PIC_Master.c: 76:         conv_Numero_A_StringContador(slave2);
+[e :UE 167 ]
+}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"46
-[; ;PIC_Master.c: 46: 
+"78
+[; ;PIC_Master.c: 78:         Lcd_Write_Char(unidadVcontador);
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"47
-[; ;PIC_Master.c: 47:         spiWrite(1);
-[e ( _setup ..  ]
-"48
-[; ;PIC_Master.c: 48:         slave3 = spiRead();
-[e ( _Lcd_Init ..  ]
-"49
-[; ;PIC_Master.c: 49: 
-[e ( _Lcd_Clear ..  ]
-"51
-[; ;PIC_Master.c: 51:         PORTCbits.RC0 = 1;
-[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-"52
-[; ;PIC_Master.c: 52: 
-[e ( _Lcd_Write_String (1 :s 1C ]
-"53
-[; ;PIC_Master.c: 53: 
-[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 8 `i `uc ]
-"54
-[; ;PIC_Master.c: 54: 
-[e ( _Lcd_Write_String (1 :s 2C ]
-"55
-[; ;PIC_Master.c: 55: 
-[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 14 `i `uc ]
-"56
-[; ;PIC_Master.c: 56: 
-[e ( _Lcd_Write_String (1 :s 3C ]
-"59
-[; ;PIC_Master.c: 59: }
-[e :U 169 ]
-{
-"65
-[; ;PIC_Master.c: 65: 
-[e = . . _PORTCbits 0 2 -> -> 0 `i `uc ]
-"66
-[; ;PIC_Master.c: 66:     PORTA = 0;
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"68
-[; ;PIC_Master.c: 68:     PORTB = 0;
-[e ( _spiWrite (1 -> _PORTB `uc ]
-"69
-[; ;PIC_Master.c: 69:     TRISC = 0;
-[e = _slave1 -> ( _spiRead ..  `uc ]
-"71
-[; ;PIC_Master.c: 71:     PORTC = 0;
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"72
-[; ;PIC_Master.c: 72:     TRISD = 0;
-[e = . . _PORTCbits 0 2 -> -> 1 `i `uc ]
-"75
-[; ;PIC_Master.c: 75:     PORTE = 0;
-[e = . . _PORTCbits 0 1 -> -> 0 `i `uc ]
-"76
-[; ;PIC_Master.c: 76:     INTCONbits.GIE = 1;
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"78
-[; ;PIC_Master.c: 78: 
-[e ( _spiWrite (1 -> -> 1 `i `uc ]
 "79
-[; ;PIC_Master.c: 79:     contador = 0;
-[e = _slave2 -> ( _spiRead ..  `uc ]
+[; ;PIC_Master.c: 79: 
+[e ( _setup ..  ]
+"80
+[; ;PIC_Master.c: 80:         Lcd_Set_Cursor(2, 9);
+[e ( _Lcd_Init ..  ]
 "81
-[; ;PIC_Master.c: 81: 
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;PIC_Master.c: 81:         Lcd_Write_Char(decenaVcontador);
+[e ( _Lcd_Clear ..  ]
 "82
-[; ;PIC_Master.c: 82:     PORTCbits.RC2 = 1;
-[e = . . _PORTCbits 0 1 -> -> 1 `i `uc ]
+[; ;PIC_Master.c: 82: 
+[e ( _UART_config ..  ]
+"84
+[; ;PIC_Master.c: 84:         Lcd_Write_Char(centenaVcontador);
+[e ( _UART_send_string (1 :s 1C ]
 "85
-[; ;PIC_Master.c: 85:     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
-[e = . . _PORTCbits 0 0 -> -> 0 `i `uc ]
+[; ;PIC_Master.c: 85: 
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
 "86
 [; ;PIC_Master.c: 86: 
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[e ( _UART_send_string (1 :s 2C ]
+"87
+[; ;PIC_Master.c: 87: 
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
 "88
-[; ;PIC_Master.c: 88: 
-[e ( _spiWrite (1 -> -> 1 `i `uc ]
+[; ;PIC_Master.c: 88:         PORTCbits.RC0 = 0;
+[e ( _UART_send_string (1 :s 3C ]
 "89
-[; ;PIC_Master.c: 89: }
-[e = _slave3 -> ( _spiRead ..  `uc ]
+[; ;PIC_Master.c: 89:         _delay((unsigned long)((1)*(8000000/4000.0)));
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"90
+[; ;PIC_Master.c: 90: 
+[e ( _UART_send_string (1 :s 4C ]
 "91
+[; ;PIC_Master.c: 91:         spiWrite(1);
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"93
+[; ;PIC_Master.c: 93: 
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
+"94
+[; ;PIC_Master.c: 94:         _delay((unsigned long)((1)*(8000000/4000.0)));
+[e ( _Lcd_Write_String (1 :s 5C ]
+"95
+[; ;PIC_Master.c: 95:         PORTCbits.RC0 = 1;
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 8 `i `uc ]
+"96
+[; ;PIC_Master.c: 96: 
+[e ( _Lcd_Write_String (1 :s 6C ]
+"97
+[; ;PIC_Master.c: 97:         conv_Numero_A_StringTemperatura(slave3);
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 14 `i `uc ]
+"98
+[; ;PIC_Master.c: 98: 
+[e ( _Lcd_Write_String (1 :s 7C ]
+"101
+[; ;PIC_Master.c: 101: 
+[e :U 171 ]
+{
+"103
+[; ;PIC_Master.c: 103:         Lcd_Write_Char(unidadVtemperatura);
+[e = . . _PORTCbits 0 2 -> -> 0 `i `uc ]
+"104
+[; ;PIC_Master.c: 104: 
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"92
+"106
+[; ;PIC_Master.c: 106:         Lcd_Write_Char(decenaVtemperatura);
+[e ( _spiWrite (1 -> _PORTB `uc ]
+"107
+[; ;PIC_Master.c: 107: 
+[e = _slave1 -> ( _spiRead ..  `uc ]
+"109
+[; ;PIC_Master.c: 109:         Lcd_Write_Char(centenaVtemperatura);
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"110
+[; ;PIC_Master.c: 110: 
+[e = . . _PORTCbits 0 2 -> -> 1 `i `uc ]
+"113
+[; ;PIC_Master.c: 113:         if (valorRX == 'a') {
+[e ( _conv_Numero_A_String (1 _slave1 ]
+"114
+[; ;PIC_Master.c: 114: 
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+"115
+[; ;PIC_Master.c: 115:             UART_send_string("Valor del ADC:");
+[e ( _Lcd_Write_Char (1 _unidadV ]
+"117
+[; ;PIC_Master.c: 117:             UART_send_char(unidadV);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 2 `i `uc ]
+"118
+[; ;PIC_Master.c: 118:             UART_send_char(46);
+[e ( _Lcd_Write_String (1 :s 8C ]
+"120
+[; ;PIC_Master.c: 120:             UART_send_char(centenaV);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 3 `i `uc ]
+"121
+[; ;PIC_Master.c: 121:             RCREG = 0;
+[e ( _Lcd_Write_Char (1 _decenaV ]
+"123
+[; ;PIC_Master.c: 123:             UART_send_char(13);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 4 `i `uc ]
+"124
+[; ;PIC_Master.c: 124:             UART_send_char(13);
+[e ( _Lcd_Write_Char (1 _centenaV ]
+"128
+[; ;PIC_Master.c: 128:             UART_send_string("A) Para mostrar el ADC");
+[e = . . _PORTCbits 0 1 -> -> 0 `i `uc ]
+"129
+[; ;PIC_Master.c: 129:             UART_send_char(13);
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"131
+[; ;PIC_Master.c: 131:             UART_send_char(13);
+[e ( _spiWrite (1 -> -> 1 `i `uc ]
+"132
+[; ;PIC_Master.c: 132:             UART_send_string("C)Para mostrar el Termometro");
+[e = _slave2 -> ( _spiRead ..  `uc ]
+"134
+[; ;PIC_Master.c: 134: 
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"135
+[; ;PIC_Master.c: 135: 
+[e = . . _PORTCbits 0 1 -> -> 1 `i `uc ]
+"137
+[; ;PIC_Master.c: 137: 
+[e ( _conv_Numero_A_StringContador (1 _slave2 ]
+"138
+[; ;PIC_Master.c: 138:             UART_send_string("Valor del Contador:");
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 8 `i `uc ]
+"139
+[; ;PIC_Master.c: 139:             UART_send_char(32);
+[e ( _Lcd_Write_Char (1 _unidadVcontador ]
+"141
+[; ;PIC_Master.c: 141:             UART_send_char(decenaVcontador);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 9 `i `uc ]
+"142
+[; ;PIC_Master.c: 142:             UART_send_char(centenaVcontador);
+[e ( _Lcd_Write_Char (1 _decenaVcontador ]
+"144
+[; ;PIC_Master.c: 144:             valorRX = 0;
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 10 `i `uc ]
+"145
+[; ;PIC_Master.c: 145: 
+[e ( _Lcd_Write_Char (1 _centenaVcontador ]
+"149
+[; ;PIC_Master.c: 149:             UART_send_string("PRESIONE: ");
+[e = . . _PORTCbits 0 0 -> -> 0 `i `uc ]
+"150
+[; ;PIC_Master.c: 150:             UART_send_char(13);
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"152
+[; ;PIC_Master.c: 152:             UART_send_char(13);
+[e ( _spiWrite (1 -> -> 1 `i `uc ]
+"153
+[; ;PIC_Master.c: 153:             UART_send_string("B) Para mostrar el contador");
+[e = _slave3 -> ( _spiRead ..  `c ]
+"155
+[; ;PIC_Master.c: 155:             UART_send_string("C)Para mostrar el Termometro");
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"156
+[; ;PIC_Master.c: 156:             UART_send_char(13);
 [e = . . _PORTCbits 0 0 -> -> 1 `i `uc ]
-"99
+"158
+[; ;PIC_Master.c: 158:         } else if (valorRX == 'c') {
+[e ( _conv_Numero_A_StringTemperatura (1 -> _slave3 `uc ]
+"160
+[; ;PIC_Master.c: 160:             UART_send_string("Valor del Termometro:");
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 13 `i `uc ]
+"161
+[; ;PIC_Master.c: 161:             UART_send_char(32);
+[e ( _Lcd_Write_Char (1 _signo ]
+"163
+[; ;PIC_Master.c: 163:             UART_send_char(unidadVtemperatura);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 14 `i `uc ]
+"164
+[; ;PIC_Master.c: 164:             UART_send_char(decenaVtemperatura);
+[e ( _Lcd_Write_Char (1 _unidadVtemperatura ]
+"166
+[; ;PIC_Master.c: 166:             RCREG = 0;
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 15 `i `uc ]
+"167
+[; ;PIC_Master.c: 167:             valorRX = 0;
+[e ( _Lcd_Write_Char (1 _decenaVtemperatura ]
+"169
+[; ;PIC_Master.c: 169:             UART_send_char(13);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 16 `i `uc ]
+"170
+[; ;PIC_Master.c: 170:             UART_send_char(13);
+[e ( _Lcd_Write_Char (1 _centenaVtemperatura ]
+"174
+[; ;PIC_Master.c: 174:             UART_send_string("A) Para mostrar el ADC");
+[e $ ! == -> _valorRX `ui -> 97 `ui 173  ]
+{
+"176
+[; ;PIC_Master.c: 176:             UART_send_string("B) Para mostrar el contador");
+[e ( _UART_send_string (1 :s 9C ]
+"177
+[; ;PIC_Master.c: 177:             UART_send_char(13);
+[e ( _UART_send_char (1 -> -> 32 `i `uc ]
+"178
+[; ;PIC_Master.c: 178:             UART_send_string("C)Para mostrar el Termometro");
+[e ( _UART_send_char (1 _unidadV ]
+"179
+[; ;PIC_Master.c: 179:             UART_send_char(13);
+[e ( _UART_send_char (1 -> -> 46 `i `uc ]
+"180
+[; ;PIC_Master.c: 180: 
+[e ( _UART_send_char (1 _decenaV ]
+"181
+[; ;PIC_Master.c: 181:         }
+[e ( _UART_send_char (1 _centenaV ]
+"182
+[; ;PIC_Master.c: 182: 
+[e = _RCREG -> -> 0 `i `uc ]
+"183
+[; ;PIC_Master.c: 183: 
+[e = _valorRX -> -> 0 `i `uc ]
+"184
+[; ;PIC_Master.c: 184: 
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"185
+[; ;PIC_Master.c: 185:     }
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"187
+[; ;PIC_Master.c: 187: 
+[e ( _UART_send_string (1 :s 10C ]
+"188
+[; ;PIC_Master.c: 188: void setup(void) {
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"189
+[; ;PIC_Master.c: 189: 
+[e ( _UART_send_string (1 :s 11C ]
+"190
+[; ;PIC_Master.c: 190:     ANSEL = 0;
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"191
+[; ;PIC_Master.c: 191:     ANSELH = 0;
+[e ( _UART_send_string (1 :s 12C ]
+"192
+[; ;PIC_Master.c: 192:     TRISA = 0;
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"193
+[; ;PIC_Master.c: 193: 
+[e ( _UART_send_string (1 :s 13C ]
+"194
+[; ;PIC_Master.c: 194:     PORTA = 0;
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"197
+[; ;PIC_Master.c: 197:     TRISC = 0;
 }
-[e :U 168 ]
-[e $U 169  ]
+[e $U 174  ]
+[e :U 173 ]
+[e $ ! == -> _valorRX `ui -> 98 `ui 175  ]
+{
+"199
+[; ;PIC_Master.c: 199:     TRISCbits.TRISC7 = 1;
+[e ( _UART_send_string (1 :s 14C ]
+"200
+[; ;PIC_Master.c: 200:     PORTC = 0;
+[e ( _UART_send_char (1 -> -> 32 `i `uc ]
+"201
+[; ;PIC_Master.c: 201:     TRISD = 0;
+[e ( _UART_send_char (1 _unidadVcontador ]
+"202
+[; ;PIC_Master.c: 202:     PORTD = 0;
+[e ( _UART_send_char (1 _decenaVcontador ]
+"203
+[; ;PIC_Master.c: 203:     TRISE = 0;
+[e ( _UART_send_char (1 _centenaVcontador ]
+"204
+[; ;PIC_Master.c: 204:     PORTE = 0;
+[e = _RCREG -> -> 0 `i `uc ]
+"205
+[; ;PIC_Master.c: 205:     INTCONbits.GIE = 1;
+[e = _valorRX -> -> 0 `i `uc ]
+"207
+[; ;PIC_Master.c: 207: 
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"208
+[; ;PIC_Master.c: 208:     contador = 0;
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"210
+[; ;PIC_Master.c: 210: 
+[e ( _UART_send_string (1 :s 15C ]
+"211
+[; ;PIC_Master.c: 211:     PORTCbits.RC2 = 1;
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"212
+[; ;PIC_Master.c: 212:     PORTCbits.RC1 = 1;
+[e ( _UART_send_string (1 :s 16C ]
+"213
+[; ;PIC_Master.c: 213:     PORTCbits.RC0 = 1;
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"214
+[; ;PIC_Master.c: 214:     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+[e ( _UART_send_string (1 :s 17C ]
+"215
+[; ;PIC_Master.c: 215: 
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"216
+[; ;PIC_Master.c: 216: 
+[e ( _UART_send_string (1 :s 18C ]
+"217
+[; ;PIC_Master.c: 217:     PIR1bits.RCIF = 0;
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"219
+[; ;PIC_Master.c: 219: 
+}
+[e $U 176  ]
+[e :U 175 ]
+[e $ ! == -> _valorRX `ui -> 99 `ui 177  ]
+{
+"221
+[; ;PIC_Master.c: 221: 
+[e ( _UART_send_string (1 :s 19C ]
+"222
+[; ;PIC_Master.c: 222: void conv_Numero_A_String(uint8_t x) {
+[e ( _UART_send_char (1 -> -> 32 `i `uc ]
+"223
+[; ;PIC_Master.c: 223: 
+[e ( _UART_send_char (1 _signo ]
+"224
+[; ;PIC_Master.c: 224:     valor = x * 2;
+[e ( _UART_send_char (1 _unidadVtemperatura ]
+"225
+[; ;PIC_Master.c: 225:     unidadV = valor / 100;
+[e ( _UART_send_char (1 _decenaVtemperatura ]
+"226
+[; ;PIC_Master.c: 226:     valor = valor - (unidadV * 100);
+[e ( _UART_send_char (1 _centenaVtemperatura ]
+"227
+[; ;PIC_Master.c: 227:     decenaV = valor / 10;
+[e = _RCREG -> -> 0 `i `uc ]
+"228
+[; ;PIC_Master.c: 228:     valor = valor - (decenaV * 10);
+[e = _valorRX -> -> 0 `i `uc ]
+"230
+[; ;PIC_Master.c: 230:     unidadV = unidadV + 48;
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"231
+[; ;PIC_Master.c: 231:     decenaV = decenaV + 48;
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"233
+[; ;PIC_Master.c: 233: 
+[e ( _UART_send_string (1 :s 20C ]
+"234
+[; ;PIC_Master.c: 234: void conv_Numero_A_StringContador(uint8_t x) {
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"235
+[; ;PIC_Master.c: 235: 
+[e ( _UART_send_string (1 :s 21C ]
+"236
+[; ;PIC_Master.c: 236:     valor = x;
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"237
+[; ;PIC_Master.c: 237:     unidadVcontador = valor / 100;
+[e ( _UART_send_string (1 :s 22C ]
+"238
+[; ;PIC_Master.c: 238:     valor = valor - (unidadVcontador * 100);
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"239
+[; ;PIC_Master.c: 239:     decenaVcontador = valor / 10;
+[e ( _UART_send_string (1 :s 23C ]
+"240
+[; ;PIC_Master.c: 240:     valor = valor - (decenaVcontador * 10);
+[e ( _UART_send_char (1 -> -> 13 `i `uc ]
+"242
+[; ;PIC_Master.c: 242:     unidadVcontador = unidadVcontador + 48;
+}
+[e :U 177 ]
+[e :U 176 ]
+[e :U 174 ]
+"246
+[; ;PIC_Master.c: 246: void conv_Numero_A_StringTemperatura(uint8_t x) {
+}
 [e :U 170 ]
-"100
-[e :UE 167 ]
+[e $U 171  ]
+[e :U 172 ]
+"247
+[; ;PIC_Master.c: 247: 
+[e :UE 169 ]
 }
-"102
+"249
+[; ;PIC_Master.c: 249:     if (x < 68) {
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"103
+"251
+[; ;PIC_Master.c: 251:         valor = x * 0.80;
 [e = _ANSEL -> -> 0 `i `uc ]
-"104
+"252
+[; ;PIC_Master.c: 252:         valor = valor - 55;
 [e = _ANSELH -> -> 0 `i `uc ]
-"105
+"253
+[; ;PIC_Master.c: 253:         valor = valor*-1;
 [e = _TRISA -> -> 0 `i `uc ]
-"107
+"255
+[; ;PIC_Master.c: 255:         unidadVtemperatura = valor / 100;
 [e = _PORTA -> -> 0 `i `uc ]
-"108
+"256
+[; ;PIC_Master.c: 256:         valor = valor - (unidadVtemperatura * 100);
 [e = _TRISB -> -> 3 `i `uc ]
-"109
+"257
+[; ;PIC_Master.c: 257:         decenaVtemperatura = valor / 10;
 [e = _PORTB -> -> 0 `i `uc ]
-"110
+"258
+[; ;PIC_Master.c: 258:         valor = valor - (decenaVtemperatura * 10);
 [e = _TRISC -> -> 0 `i `uc ]
-"111
+"259
+[; ;PIC_Master.c: 259:         centenaVtemperatura = valor + 48;
 [e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
-"112
+"260
+[; ;PIC_Master.c: 260:         unidadVtemperatura = unidadVtemperatura + 48;
+[e = . . _TRISCbits 0 7 -> -> 1 `i `uc ]
+"261
+[; ;PIC_Master.c: 261:         decenaVtemperatura = decenaVtemperatura + 48;
 [e = _PORTC -> -> 0 `i `uc ]
-"113
+"262
+[; ;PIC_Master.c: 262: 
 [e = _TRISD -> -> 0 `i `uc ]
-"114
+"263
+[; ;PIC_Master.c: 263:     } else if (x == 68) {
 [e = _PORTD -> -> 0 `i `uc ]
-"115
+"264
+[; ;PIC_Master.c: 264:         signo = 32;
 [e = _TRISE -> -> 0 `i `uc ]
-"116
+"265
+[; ;PIC_Master.c: 265:         unidadVtemperatura = 48;
 [e = _PORTE -> -> 0 `i `uc ]
-"117
+"266
+[; ;PIC_Master.c: 266:         decenaVtemperatura = 48;
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"118
+"267
+[; ;PIC_Master.c: 267:         centenaVtemperatura = 48;
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-"120
+"269
+[; ;PIC_Master.c: 269:     } else {
 [e = _contador -> -> 0 `i `uc ]
-"123
+"272
+[; ;PIC_Master.c: 272:         valor = valor * 0.80;
 [e = . . _PORTCbits 0 2 -> -> 1 `i `uc ]
-"124
+"273
+[; ;PIC_Master.c: 273:         valor = valor - 55;
 [e = . . _PORTCbits 0 1 -> -> 1 `i `uc ]
-"125
+"274
+[; ;PIC_Master.c: 274:         unidadVtemperatura = valor / 100;
 [e = . . _PORTCbits 0 0 -> -> 1 `i `uc ]
-"126
+"275
+[; ;PIC_Master.c: 275:         valor = valor - (unidadVtemperatura * 100);
 [e ( _spiInit (4 , , , . `E1473 0 . `E1481 0 . `E1485 1 . `E1489 0 ]
-"130
-[e :UE 171 ]
+"278
+[; ;PIC_Master.c: 278:         centenaVtemperatura = valor + 48;
+[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
+"281
+[; ;PIC_Master.c: 281: 
+[e :UE 178 ]
 }
-[a 3C 83 51 58 0 ]
-[a 2C 83 50 58 0 ]
-[a 1C 83 49 58 0 ]
+"283
+[; ;PIC_Master.c: 283:     }
+[v _conv_Numero_A_String `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _conv_Numero_A_String ]
+[v _x `uc ~T0 @X0 1 r1 ]
+[f ]
+"285
+[; ;PIC_Master.c: 285: }
+[e = _valor -> * -> _x `i -> 2 `i `ui ]
+"286
+[e = _unidadV -> / _valor -> -> 100 `i `ui `uc ]
+"287
+[e = _valor - _valor -> * -> _unidadV `i -> 100 `i `ui ]
+"288
+[e = _decenaV -> / _valor -> -> 10 `i `ui `uc ]
+"289
+[e = _valor - _valor -> * -> _decenaV `i -> 10 `i `ui ]
+"290
+[e = _centenaV -> + _valor -> -> 48 `i `ui `uc ]
+"291
+[e = _unidadV -> + -> _unidadV `i -> 48 `i `uc ]
+"292
+[e = _decenaV -> + -> _decenaV `i -> 48 `i `uc ]
+"293
+[e :UE 179 ]
+}
+"295
+[v _conv_Numero_A_StringContador `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _conv_Numero_A_StringContador ]
+[v _x `uc ~T0 @X0 1 r1 ]
+[f ]
+"297
+[e = _valor -> _x `ui ]
+"298
+[e = _unidadVcontador -> / _valor -> -> 100 `i `ui `uc ]
+"299
+[e = _valor - _valor -> * -> _unidadVcontador `i -> 100 `i `ui ]
+"300
+[e = _decenaVcontador -> / _valor -> -> 10 `i `ui `uc ]
+"301
+[e = _valor - _valor -> * -> _decenaVcontador `i -> 10 `i `ui ]
+"302
+[e = _centenaVcontador -> + _valor -> -> 48 `i `ui `uc ]
+"303
+[e = _unidadVcontador -> + -> _unidadVcontador `i -> 48 `i `uc ]
+"304
+[e = _decenaVcontador -> + -> _decenaVcontador `i -> 48 `i `uc ]
+"305
+[e :UE 180 ]
+}
+"307
+[v _conv_Numero_A_StringTemperatura `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _conv_Numero_A_StringTemperatura ]
+[v _x `uc ~T0 @X0 1 r1 ]
+[f ]
+"310
+[e $ ! < -> _x `i -> 68 `i 182  ]
+{
+"311
+[e = _signo -> -> 45 `i `uc ]
+"312
+[e = _valor -> * -> -> _x `i `d .0.80 `ui ]
+"313
+[e = _valor - _valor -> -> 55 `i `ui ]
+"314
+[e = _valor * _valor -> -U -> 1 `i `ui ]
+"316
+[e = _unidadVtemperatura -> / _valor -> -> 100 `i `ui `uc ]
+"317
+[e = _valor - _valor -> * -> _unidadVtemperatura `i -> 100 `i `ui ]
+"318
+[e = _decenaVtemperatura -> / _valor -> -> 10 `i `ui `uc ]
+"319
+[e = _valor - _valor -> * -> _decenaVtemperatura `i -> 10 `i `ui ]
+"320
+[e = _centenaVtemperatura -> + _valor -> -> 48 `i `ui `uc ]
+"321
+[e = _unidadVtemperatura -> + -> _unidadVtemperatura `i -> 48 `i `uc ]
+"322
+[e = _decenaVtemperatura -> + -> _decenaVtemperatura `i -> 48 `i `uc ]
+"324
+}
+[e $U 183  ]
+[e :U 182 ]
+[e $ ! == -> _x `i -> 68 `i 184  ]
+{
+"325
+[e = _signo -> -> 32 `i `uc ]
+"326
+[e = _unidadVtemperatura -> -> 48 `i `uc ]
+"327
+[e = _decenaVtemperatura -> -> 48 `i `uc ]
+"328
+[e = _centenaVtemperatura -> -> 48 `i `uc ]
+"330
+}
+[e $U 185  ]
+[e :U 184 ]
+{
+"331
+[e = _signo -> -> 43 `i `uc ]
+"332
+[e = _valor -> _x `ui ]
+"333
+[e = _valor -> * -> _valor `d .0.80 `ui ]
+"334
+[e = _valor - _valor -> -> 55 `i `ui ]
+"335
+[e = _unidadVtemperatura -> / _valor -> -> 100 `i `ui `uc ]
+"336
+[e = _valor - _valor -> * -> _unidadVtemperatura `i -> 100 `i `ui ]
+"337
+[e = _decenaVtemperatura -> / _valor -> -> 10 `i `ui `uc ]
+"338
+[e = _valor - _valor -> * -> _decenaVtemperatura `i -> 10 `i `ui ]
+"339
+[e = _centenaVtemperatura -> + _valor -> -> 48 `i `ui `uc ]
+"340
+[e = _unidadVtemperatura -> + -> _unidadVtemperatura `i -> 48 `i `uc ]
+"341
+[e = _decenaVtemperatura -> + -> _decenaVtemperatura `i -> 48 `i `uc ]
+"344
+}
+[e :U 185 ]
+[e :U 183 ]
+"346
+[e :UE 181 ]
+}
+[a 3C 66 41 32 80 97 114 97 32 109 111 115 116 114 97 114 32 101 108 32 99 111 110 116 97 100 111 114 0 ]
+[a 12C 66 41 32 80 97 114 97 32 109 111 115 116 114 97 114 32 101 108 32 99 111 110 116 97 100 111 114 0 ]
+[a 17C 66 41 32 80 97 114 97 32 109 111 115 116 114 97 114 32 101 108 32 99 111 110 116 97 100 111 114 0 ]
+[a 22C 66 41 32 80 97 114 97 32 109 111 115 116 114 97 114 32 101 108 32 99 111 110 116 97 100 111 114 0 ]
+[a 4C 67 41 80 97 114 97 32 109 111 115 116 114 97 114 32 101 108 32 84 101 114 109 111 109 101 116 114 111 0 ]
+[a 13C 67 41 80 97 114 97 32 109 111 115 116 114 97 114 32 101 108 32 84 101 114 109 111 109 101 116 114 111 0 ]
+[a 18C 67 41 80 97 114 97 32 109 111 115 116 114 97 114 32 101 108 32 84 101 114 109 111 109 101 116 114 111 0 ]
+[a 23C 67 41 80 97 114 97 32 109 111 115 116 114 97 114 32 101 108 32 84 101 114 109 111 109 101 116 114 111 0 ]
+[a 2C 65 41 32 80 97 114 97 32 109 111 115 116 114 97 114 32 101 108 32 65 68 67 0 ]
+[a 11C 65 41 32 80 97 114 97 32 109 111 115 116 114 97 114 32 101 108 32 65 68 67 0 ]
+[a 16C 65 41 32 80 97 114 97 32 109 111 115 116 114 97 114 32 101 108 32 65 68 67 0 ]
+[a 21C 65 41 32 80 97 114 97 32 109 111 115 116 114 97 114 32 101 108 32 65 68 67 0 ]
+[a 14C 86 97 108 111 114 32 100 101 108 32 67 111 110 116 97 100 111 114 58 0 ]
+[a 19C 86 97 108 111 114 32 100 101 108 32 84 101 114 109 111 109 101 116 114 111 58 0 ]
+[a 9C 86 97 108 111 114 32 100 101 108 32 65 68 67 58 0 ]
+[a 7C 83 51 58 0 ]
+[a 6C 83 50 58 0 ]
+[a 5C 83 49 58 0 ]
+[a 8C 46 0 ]
+[a 1C 80 82 69 83 73 79 78 69 58 32 0 ]
+[a 10C 80 82 69 83 73 79 78 69 58 32 0 ]
+[a 15C 80 82 69 83 73 79 78 69 58 32 0 ]
+[a 20C 80 82 69 83 73 79 78 69 58 32 0 ]

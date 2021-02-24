@@ -1,4 +1,4 @@
-# 1 "ADC.c"
+# 1 "USART.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,11 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "ADC.c" 2
-
-# 1 "./ADC.h" 1
-
-
+# 1 "USART.c" 2
+# 1 "./USART.h" 1
 
 
 
@@ -2497,7 +2494,106 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 9 "./ADC.h" 2
+# 7 "./USART.h" 2
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
+
+
+
+# 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__size_t.h" 1 3
+
+
+
+typedef unsigned size_t;
+# 4 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
+
+# 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__null.h" 1 3
+# 5 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
+
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdarg.h" 1 3
+
+
+
+
+
+
+typedef void * va_list[1];
+
+#pragma intrinsic(__va_start)
+extern void * __va_start(void);
+
+#pragma intrinsic(__va_arg)
+extern void * __va_arg(void *, ...);
+# 11 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
+# 43 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
+struct __prbuf
+{
+ char * ptr;
+ void (* func)(char);
+};
+# 85 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\conio.h" 1 3
+
+
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\errno.h" 1 3
+# 29 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\errno.h" 3
+extern int errno;
+# 8 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\conio.h" 2 3
+
+
+
+
+extern void init_uart(void);
+
+extern char getch(void);
+extern char getche(void);
+extern void putch(char);
+extern void ungetch(char);
+
+extern __bit kbhit(void);
+
+
+
+extern char * cgets(char *);
+extern void cputs(const char *);
+# 85 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 2 3
+
+
+
+extern int cprintf(char *, ...);
+#pragma printf_check(cprintf)
+
+
+
+extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+# 180 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 3
+#pragma printf_check(vprintf) const
+#pragma printf_check(vsprintf) const
+
+extern char * gets(char *);
+extern int puts(const char *);
+extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+
+#pragma printf_check(printf) const
+#pragma printf_check(sprintf) const
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
+# 8 "./USART.h" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2632,177 +2728,58 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 10 "./ADC.h" 2
+# 9 "./USART.h" 2
 
 
-void ADC(uint8_t ANA, uint8_t justificado);
-# 2 "ADC.c" 2
+void UART_config();
+void UART_send_char(char bt);
+void UART_send_string(char* st_pt);
+char UART_get_char();
+# 1 "USART.c" 2
 
 
-void ADC(uint8_t ANA, uint8_t justificado) {
+void UART_config() {
 
 
-    ADCON0bits.ADON = 1;
-    ADCON0bits.ADCS = 0b10;
 
-    TRISAbits.TRISA2 = 1;
-    TRISAbits.TRISA3 = 1;
-    ADCON1bits.VCFG1 = 1;
-    ADCON1bits.VCFG0 = 1;
-
-    PIE1bits.ADIE = 1;
-    PIR1bits.ADIF = 0;
-
-    if (justificado == 0) {
-        ADCON1bits.ADFM = 0;
-        switch (ANA) {
-            case 0:
-                TRISAbits.TRISA0 = 1;
-                ANSELbits.ANS0 = 1;
-                ADCON0bits.CHS = 0b0000;
-                break;
-            case 1:
-                TRISAbits.TRISA1 = 1;
-                ANSELbits.ANS1 = 1;
-                ADCON0bits.CHS = 0b0001;
-                break;
-            case 2:
-                TRISAbits.TRISA2 = 1;
-                ANSELbits.ANS2 = 1;
-                ADCON0bits.CHS = 0b0010;
-                break;
-            case 3:
-                TRISAbits.TRISA3 = 1;
-                ANSELbits.ANS3 = 1;
-                ADCON0bits.CHS = 0b0011;
-                break;
-            case 4:
-                TRISAbits.TRISA5 = 1;
-                ANSELbits.ANS4 = 1;
-                ADCON0bits.CHS = 0b0100;
-                break;
-            case 5:
-                TRISEbits.TRISE0 = 1;
-                ANSELbits.ANS5 = 1;
-                ADCON0bits.CHS = 0b0101;
-                break;
-            case 6:
-                TRISEbits.TRISE1 = 1;
-                ANSELbits.ANS6 = 1;
-                ADCON0bits.CHS = 0b0110;
-            case 7:
-                TRISEbits.TRISE2 = 1;
-                ANSELbits.ANS7 = 1;
-                ADCON0bits.CHS = 0b0111;
-                break;
-            case 8:
-                TRISBbits.TRISB2 = 1;
-                ANSELHbits.ANS8 = 1;
-                ADCON0bits.CHS = 0b1000;
-                break;
-            case 9:
-                TRISBbits.TRISB3 = 1;
-                ANSELHbits.ANS9 = 1;
-                ADCON0bits.CHS = 0b1001;
-                break;
-            case 10:
-                TRISBbits.TRISB1 = 1;
-                ANSELHbits.ANS10 = 1;
-                ADCON0bits.CHS = 0b1010;
-                break;
-            case 11:
-                TRISBbits.TRISB4 = 1;
-                ANSELHbits.ANS11 = 1;
-                ADCON0bits.CHS = 0b1011;
-                break;
-            case 12:
-                TRISBbits.TRISB0 = 1;
-                ANSELHbits.ANS12 = 1;
-                ADCON0bits.CHS = 0b1100;
-                break;
-            case 13:
-                TRISBbits.TRISB5 = 1;
-                ANSELHbits.ANS13 = 1;
-                ADCON0bits.CHS = 0b1101;
-                break;
+    TXSTAbits.TXEN = 1;
+    TXSTAbits.SYNC = 0;
+    RCSTAbits.SPEN = 1;
+    TRISCbits.TRISC6 = 0;
+    TXSTAbits.TX9 = 0;
 
 
-        }
-    } else if (justificado == 1) {
-        ADCON1bits.ADFM = 1;
-        switch (ANA) {
-                switch (ANA) {
-                    case 0:
-                        TRISAbits.TRISA0 = 1;
-                        ANSELbits.ANS0 = 1;
-                        ADCON0bits.CHS = 0b0000;
-                        break;
-                    case 1:
-                        TRISAbits.TRISA1 = 1;
-                        ANSELbits.ANS1 = 1;
-                        ADCON0bits.CHS = 0b0001;
-                        break;
-                    case 2:
-                        TRISAbits.TRISA2 = 1;
-                        ANSELbits.ANS2 = 1;
-                        ADCON0bits.CHS = 0b0010;
-                        break;
-                    case 3:
-                        TRISAbits.TRISA3 = 1;
-                        ANSELbits.ANS3 = 1;
-                        ADCON0bits.CHS = 0b0011;
-                        break;
-                    case 4:
-                        TRISAbits.TRISA5 = 1;
-                        ANSELbits.ANS4 = 1;
-                        ADCON0bits.CHS = 0b0100;
-                        break;
-                    case 5:
-                        TRISEbits.TRISE0 = 1;
-                        ANSELbits.ANS5 = 1;
-                        ADCON0bits.CHS = 0b0101;
-                        break;
-                    case 6:
-                        TRISEbits.TRISE1 = 1;
-                        ANSELbits.ANS6 = 1;
-                        ADCON0bits.CHS = 0b0110;
-                    case 7:
-                        TRISEbits.TRISE2 = 1;
-                        ANSELbits.ANS7 = 1;
-                        ADCON0bits.CHS = 0b0111;
-                        break;
-                    case 8:
-                        TRISBbits.TRISB2 = 1;
-                        ANSELHbits.ANS8 = 1;
-                        ADCON0bits.CHS = 0b1000;
-                        break;
-                    case 9:
-                        TRISBbits.TRISB3 = 1;
-                        ANSELHbits.ANS9 = 1;
-                        ADCON0bits.CHS = 0b1001;
-                        break;
-                    case 10:
-                        TRISBbits.TRISB1 = 1;
-                        ANSELHbits.ANS10 = 1;
-                        ADCON0bits.CHS = 0b1010;
-                        break;
-                    case 11:
-                        TRISBbits.TRISB4 = 1;
-                        ANSELHbits.ANS11 = 1;
-                        ADCON0bits.CHS = 0b1011;
-                        break;
-                    case 12:
-                        TRISBbits.TRISB0 = 1;
-                        ANSELHbits.ANS12 = 1;
-                        ADCON0bits.CHS = 0b1100;
-                        break;
-                    case 13:
-                        TRISBbits.TRISB5 = 1;
-                        ANSELHbits.ANS13 = 1;
-                        ADCON0bits.CHS = 0b1101;
-                        break;
-                }
-        }
+
+    RCSTAbits.CREN = 1;
+    PIE1bits.RCIE=1;
+    RCSTAbits.RX9 = 0;
+    TRISCbits.TRISC7 = 1;
+
+
+    SPBRG = ((8000000 / 16) / 9600) - 1;
+    TXSTAbits.BRGH = 1;
+
+
+}
+
+void UART_send_char(char bt) {
+    while (!TXIF);
+    TXREG = bt;
+}
+
+void UART_send_string(char* st_pt) {
+    while (*st_pt)
+        UART_send_char(*st_pt++);
+}
+
+char UART_get_char() {
+    if (RCSTAbits.OERR==1)
+    {
+        RCSTAbits.CREN = 0;
+        RCSTAbits.CREN = 1;
     }
+
+    while (!PIR1bits.RCIF);
+    return RCREG;
 
 }
