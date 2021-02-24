@@ -1,5 +1,13 @@
+//Universidad del Valle de Guatemala
+//Digital 2
+//Diego Mencoss 18300
+//Slave 3-Termometro
+
+
 #define _XTAL_FREQ 8000000
 
+
+//Importamos librerias
 #include <xc.h>
 #include "ADC.h"
 #include <stdint.h>
@@ -9,8 +17,7 @@
 
 
 
-
-uint8_t contador;
+//Definimos variables
 signed int temperatura;
 
 
@@ -28,9 +35,11 @@ signed int temperatura;
 
 
 
-
+//Prototipo de funciones
 void setup(void);
 void __interrupt() isr(void);
+
+//Configuramos las interrupciones
 
 void __interrupt() isr(void) {
 
@@ -44,25 +53,27 @@ void __interrupt() isr(void) {
 }
 
 int main() {
-    setup();
-    ADC(0, 0);
+    setup(); //Llamamos a la configuracion
+    ADC(0, 0); //Seleccionamos canal 0 y justificacion a la izquierda
     ADCON0bits.GO_nDONE = 1;
-    PORTBbits.RB3 = 0;
+    PORTBbits.RB3 = 0; //Ponemos las salidas del semoforo
     PORTBbits.RB4 = 0;
     PORTBbits.RB5 = 0;
     while (1) {
-        spiWrite(temperatura);
         
-        if (PORTD >= 113) {
+        spiWrite(temperatura); //Escribimos constantementes el valor de la 
+                               // temperatura en la comunicacion
+        
+        if (PORTD >= 113) { //Semaforo en rojo
             PORTBbits.RB3 = 1;
             PORTBbits.RB4 = 0;
             PORTBbits.RB5 = 0;
-        } else if (PORTD < 113 & PORTD >= 98) {
+        } else if (PORTD < 113 & PORTD >= 98) { //Semaforo en amarillo
             PORTBbits.RB3 = 0;
             PORTBbits.RB4 = 1;
             PORTBbits.RB5 = 0;
 
-        } else {
+        } else { //Semaforo en verde
             PORTBbits.RB3 = 0;
             PORTBbits.RB4 = 0;
             PORTBbits.RB5 = 1;
@@ -75,11 +86,11 @@ int main() {
 void setup(void) {
     ANSEL = 0;
     ANSELH = 0;
-    TRISA = 0;
+    TRISA=0b00100000;
     PORTA = 0;
     TRISB = 0b00000011;
     PORTB = 0;
-    TRISC = 0;
+    TRISC = 0b00011000;
     PORTC = 0;
     TRISD = 0;
     PORTD = 0;
@@ -88,15 +99,12 @@ void setup(void) {
     INTCONbits.GIE = 1; //Habilitamos las interrupciones
     INTCONbits.PEIE = 1;
 
-    contador = 0;
     temperatura=0;
 
     INTCONbits.GIE = 1; // Habilitamos interrupciones
     INTCONbits.PEIE = 1; // Habilitamos interrupciones PEIE
-    //PIR1bits.SSPIF = 0; // Borramos bandera interrupción MSSP
-    //PIE1bits.SSPIE = 1; // Habilitamos interrupción MSSP
-    TRISAbits.TRISA5 = 1; // Slave Select
 
+    //Configuracion de la comunicacion SPI
     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 
 }

@@ -7,7 +7,7 @@
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "PIC_Master.c" 2
-# 10 "PIC_Master.c"
+# 17 "PIC_Master.c"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,7 +2488,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 10 "PIC_Master.c" 2
+# 17 "PIC_Master.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2623,7 +2623,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 11 "PIC_Master.c" 2
+# 18 "PIC_Master.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
 
@@ -2722,7 +2722,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 12 "PIC_Master.c" 2
+# 19 "PIC_Master.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 1 3
 
@@ -2807,7 +2807,7 @@ extern char * ltoa(char * buf, long val, int base);
 extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
-# 13 "PIC_Master.c" 2
+# 20 "PIC_Master.c" 2
 
 # 1 "./SPI.h" 1
 # 17 "./SPI.h"
@@ -2844,7 +2844,7 @@ void spiInit(Spi_Type, Spi_Data_Sample, Spi_Clock_Idle, Spi_Transmit_Edge);
 void spiWrite(char);
 unsigned spiDataReady();
 char spiRead();
-# 14 "PIC_Master.c" 2
+# 21 "PIC_Master.c" 2
 
 # 1 "./lcd.h" 1
 
@@ -2963,7 +2963,7 @@ void Lcd_Shift_Left()
  Lcd_Cmd(0x01);
  Lcd_Cmd(0x08);
 }
-# 15 "PIC_Master.c" 2
+# 22 "PIC_Master.c" 2
 
 # 1 "./USART.h" 1
 
@@ -2982,13 +2982,12 @@ void UART_config();
 void UART_send_char(char bt);
 void UART_send_string(char* st_pt);
 char UART_get_char();
-# 16 "PIC_Master.c" 2
+# 23 "PIC_Master.c" 2
 
 
 
 
 
-uint8_t contador;
 uint8_t slave1;
 uint8_t slave2;
 int8_t slave3;
@@ -3008,11 +3007,6 @@ char unidadVtemperatura;
 char decenaVtemperatura;
 char centenaVtemperatura;
 char signo;
-
-
-
-
-
 
 
 #pragma config FOSC = HS
@@ -3036,6 +3030,10 @@ void conv_Numero_A_String(uint8_t x);
 void conv_Numero_A_StringContador(uint8_t x);
 void conv_Numero_A_StringTemperatura(uint8_t x);
 
+
+
+
+
 void __attribute__((picinterrupt(("")))) isr(void) {
 
     if (PIR1bits.RCIF == 1) {
@@ -3051,14 +3049,17 @@ void main() {
     Lcd_Clear();
     UART_config();
 
+
+
     UART_send_string("PRESIONE: ");
     UART_send_char(13);
-    UART_send_string("A) Para mostrar el ADC");
+    UART_send_string(" 'a'- Para mostrar el ADC");
     UART_send_char(13);
-    UART_send_string("B) Para mostrar el contador");
+    UART_send_string(" 'b'- Para mostrar el contador");
     UART_send_char(13);
-    UART_send_string("C)Para mostrar el Termometro");
+    UART_send_string(" 'c'- Para mostrar el Termometro");
     UART_send_char(13);
+
 
     Lcd_Set_Cursor(1, 1);
     Lcd_Write_String("S1:");
@@ -3070,6 +3071,9 @@ void main() {
 
     while (1) {
 
+
+
+
         PORTCbits.RC2 = 0;
         _delay((unsigned long)((1)*(8000000/4000.0)));
 
@@ -3078,6 +3082,7 @@ void main() {
 
         _delay((unsigned long)((1)*(8000000/4000.0)));
         PORTCbits.RC2 = 1;
+
 
 
         conv_Numero_A_String(slave1);
@@ -3104,6 +3109,10 @@ void main() {
         _delay((unsigned long)((1)*(8000000/4000.0)));
         PORTCbits.RC1 = 1;
 
+
+
+
+
         conv_Numero_A_StringContador(slave2);
         Lcd_Set_Cursor(2, 8);
         Lcd_Write_Char(unidadVcontador);
@@ -3125,8 +3134,11 @@ void main() {
         _delay((unsigned long)((1)*(8000000/4000.0)));
         PORTCbits.RC0 = 1;
 
-        conv_Numero_A_StringTemperatura(slave3);
 
+
+
+
+        conv_Numero_A_StringTemperatura(slave3);
         Lcd_Set_Cursor(2, 13);
         Lcd_Write_Char(signo);
 
@@ -3141,8 +3153,9 @@ void main() {
 
 
 
-        if (valorRX == 'a') {
 
+
+        if (valorRX == 'a') {
             UART_send_string("Valor del ADC:");
             UART_send_char(32);
             UART_send_char(unidadV);
@@ -3156,12 +3169,13 @@ void main() {
 
             UART_send_string("PRESIONE: ");
             UART_send_char(13);
-            UART_send_string("A) Para mostrar el ADC");
+            UART_send_string(" 'a'- Para mostrar el ADC");
             UART_send_char(13);
-            UART_send_string("B) Para mostrar el contador");
+            UART_send_string(" 'b'- Para mostrar el contador");
             UART_send_char(13);
-            UART_send_string("C)Para mostrar el Termometro");
+            UART_send_string(" 'c'- Para mostrar el Termometro");
             UART_send_char(13);
+
 
 
         } else if (valorRX == 'b') {
@@ -3174,17 +3188,18 @@ void main() {
             RCREG = 0;
             valorRX = 0;
 
-                        UART_send_char(13);
+            UART_send_char(13);
             UART_send_char(13);
 
             UART_send_string("PRESIONE: ");
             UART_send_char(13);
-            UART_send_string("A) Para mostrar el ADC");
+            UART_send_string(" 'a'- Para mostrar el ADC");
             UART_send_char(13);
-            UART_send_string("B) Para mostrar el contador");
+            UART_send_string(" 'b'- Para mostrar el contador");
             UART_send_char(13);
-            UART_send_string("C)Para mostrar el Termometro");
+            UART_send_string(" 'c'- Para mostrar el Termometro");
             UART_send_char(13);
+
 
         } else if (valorRX == 'c') {
 
@@ -3202,12 +3217,13 @@ void main() {
 
             UART_send_string("PRESIONE: ");
             UART_send_char(13);
-            UART_send_string("A) Para mostrar el ADC");
+            UART_send_string(" 'a'- Para mostrar el ADC");
             UART_send_char(13);
-            UART_send_string("B) Para mostrar el contador");
+            UART_send_string(" 'b'- Para mostrar el contador");
             UART_send_char(13);
-            UART_send_string("C)Para mostrar el Termometro");
+            UART_send_string(" 'c'- Para mostrar el Termometro");
             UART_send_char(13);
+
 
         }
 
@@ -3221,13 +3237,10 @@ void setup(void) {
     ANSEL = 0;
     ANSELH = 0;
     TRISA = 0;
-
     PORTA = 0;
     TRISB = 0b00000011;
     PORTB = 0;
-    TRISC = 0;
-    TRISCbits.TRISC4 = 1;
-    TRISCbits.TRISC7 = 1;
+    TRISC = 0b10010000;
     PORTC = 0;
     TRISD = 0;
     PORTD = 0;
@@ -3236,19 +3249,19 @@ void setup(void) {
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
 
-    contador = 0;
-
-
     PORTCbits.RC2 = 1;
     PORTCbits.RC1 = 1;
     PORTCbits.RC0 = 1;
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 
 
+
     PIR1bits.RCIF = 0;
 
 
 }
+
+
 
 void conv_Numero_A_String(uint8_t x) {
 
@@ -3262,6 +3275,9 @@ void conv_Numero_A_String(uint8_t x) {
     decenaV = decenaV + 48;
 }
 
+
+
+
 void conv_Numero_A_StringContador(uint8_t x) {
 
     valor = x;
@@ -3274,10 +3290,14 @@ void conv_Numero_A_StringContador(uint8_t x) {
     decenaVcontador = decenaVcontador + 48;
 }
 
+
+
+
 void conv_Numero_A_StringTemperatura(uint8_t x) {
 
 
     if (x < 68) {
+
         signo = 45;
         valor = x * 0.80;
         valor = valor - 55;

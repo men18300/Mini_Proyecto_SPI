@@ -58,8 +58,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./SPI.h: 47: void spiWrite(char);
 [v _spiWrite `(v ~T0 @X0 0 ef1`uc ]
 [p mainexit ]
-"31 PICADC.c
-[; ;PICADC.c: 31: 
+"37 PICADC.c
+[; ;PICADC.c: 37:     ANSEL = 0;
 [v _setup `(v ~T0 @X0 0 ef ]
 "12 ./ADC.h
 [; ;./ADC.h: 12: void ADC(uint8_t ANA, uint8_t justificado);
@@ -120,19 +120,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1718
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1718: extern volatile PIE1bits_t PIE1bits __attribute__((address(0x08C)));
 [v _PIE1bits `VS62 ~T0 @X0 0 e@140 ]
-"1422
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1422:     struct {
-[s S53 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S53 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 TRISA7 ]
-"1421
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1421: typedef union {
-[u S52 `S53 1 ]
-[n S52 . . ]
-"1433
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1433: extern volatile TRISAbits_t TRISAbits __attribute__((address(0x085)));
-[v _TRISAbits `VS52 ~T0 @X0 0 e@133 ]
-"101 PICADC.c
-[; ;PICADC.c: 101:     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+"94 PICADC.c
 [c E1476 32 33 34 35 36 37 .. ]
 [n E1476 . SPI_MASTER_OSC_DIV4 SPI_MASTER_OSC_DIV16 SPI_MASTER_OSC_DIV64 SPI_MASTER_TMR2 SPI_SLAVE_SS_EN SPI_SLAVE_SS_DIS  ]
 [c E1484 0 128 .. ]
@@ -378,171 +366,163 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"12 PICADC.c
-[; ;PICADC.c: 12: uint8_t contador;
-[; ;PICADC.c: 12:         PORTD = ADRESH;
+"19 PICADC.c
+[; ;PICADC.c: 19: uint8_t contador;
+[; ;PICADC.c: 19:     } else if (SSPIF == 1) {
 [v _contador `uc ~T0 @X0 1 e ]
-"13
-[; ;PICADC.c: 13: unsigned short t;
-[; ;PICADC.c: 13:         contador = PORTD;
-[v _t `us ~T0 @X0 1 e ]
-"17
-[; ;PICADC.c: 17:     } else if (SSPIF == 1) {
-[p x FOSC  =  HS  ]
-"18
-[; ;PICADC.c: 18:         PORTE = spiRead();
-[p x WDTE  =  OFF  ]
-"19
-[; ;PICADC.c: 19:         spiWrite(PORTD);
-[p x PWRTE  =  OFF  ]
-"20
-[; ;PICADC.c: 20:         SSPIF = 0;
-[p x BOREN  =  ON  ]
-"21
-[; ;PICADC.c: 21:     }
-[p x LVP  =  OFF  ]
-"22
-[; ;PICADC.c: 22: }
-[p x CPD  =  OFF  ]
 "23
-[; ;PICADC.c: 23: 
-[p x WRT  =  OFF  ]
+[; ;PICADC.c: 23:     }
+[p x FOSC  =  HS  ]
 "24
-[; ;PICADC.c: 24: int main() {
+[; ;PICADC.c: 24: }
+[p x WDTE  =  OFF  ]
+"25
+[; ;PICADC.c: 25: 
+[p x PWRTE  =  OFF  ]
+"26
+[; ;PICADC.c: 26: int main() {
+[p x BOREN  =  ON  ]
+"27
+[; ;PICADC.c: 27:     setup();
+[p x LVP  =  OFF  ]
+"28
+[; ;PICADC.c: 28:     ADC(0, 0);
+[p x CPD  =  OFF  ]
+"29
+[; ;PICADC.c: 29:     ADCON0bits.GO_nDONE = 1;
+[p x WRT  =  OFF  ]
+"30
+[; ;PICADC.c: 30:     while (1) {
 [p x CP  =  OFF  ]
 [v $root$_isr `(v ~T0 @X0 0 e ]
-"35
-[; ;PICADC.c: 35: 
+"43
+[; ;PICADC.c: 43:     PORTB = 0;
 [v _isr `(v ~T2 @X0 1 ef ]
 {
 [e :U _isr ]
 [f ]
-"37
-[; ;PICADC.c: 37:     ANSEL = 0;
+"45
+[; ;PICADC.c: 45:     PORTC = 0;
 [e $ ! == -> . . _PIR1bits 0 6 `i -> 1 `i 144  ]
 {
-"38
-[; ;PICADC.c: 38:     ANSELH = 0;
+"46
+[; ;PICADC.c: 46:     TRISD = 0;
 [e = _PORTD _ADRESH ]
-"39
-[; ;PICADC.c: 39:     TRISA = 0;
+"47
+[; ;PICADC.c: 47:     PORTD = 0;
 [e = _contador _PORTD ]
-"40
-[; ;PICADC.c: 40:     PORTA = 0;
+"48
+[; ;PICADC.c: 48:     TRISE = 0;
 [e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"41
-[; ;PICADC.c: 41:     TRISB = 0b00000011;
+"49
+[; ;PICADC.c: 49:     PORTE = 0;
 [e ( __delay (1 -> * .0.4 / -> -> 8000000 `l `d .4000.0 `ul ]
-"42
-[; ;PICADC.c: 42:     PORTB = 0;
+"50
+[; ;PICADC.c: 50:     INTCONbits.GIE = 1;
 [e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
-"43
-[; ;PICADC.c: 43:     TRISC = 0;
+"51
+[; ;PICADC.c: 51:     INTCONbits.PEIE = 1;
 }
 [e $U 145  ]
 [e :U 144 ]
 [e $ ! == -> _SSPIF `i -> 1 `i 146  ]
 {
-"44
-[; ;PICADC.c: 44:     PORTC = 0;
+"52
+[; ;PICADC.c: 52:     contador = 0;
 [e = _PORTE -> ( _spiRead ..  `uc ]
-"45
-[; ;PICADC.c: 45:     TRISD = 0;
+"53
+[; ;PICADC.c: 53: 
 [e ( _spiWrite (1 -> _PORTD `uc ]
-"46
-[; ;PICADC.c: 46:     PORTD = 0;
+"54
+[; ;PICADC.c: 54: 
 [e = _SSPIF -> -> 0 `i `b ]
-"47
-[; ;PICADC.c: 47:     TRISE = 0;
+"55
+[; ;PICADC.c: 55:     INTCONbits.GIE = 1;
 }
 [e :U 146 ]
 [e :U 145 ]
-"48
-[; ;PICADC.c: 48:     PORTE = 0;
+"56
+[; ;PICADC.c: 56:     INTCONbits.PEIE = 1;
 [e :UE 143 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"50
-[; ;PICADC.c: 50:     INTCONbits.PEIE = 1;
+"58
+[; ;PICADC.c: 58:     PIE1bits.SSPIE = 1;
 [v _main `(i ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"51
-[; ;PICADC.c: 51:     contador = 0;
+"59
+[; ;PICADC.c: 59: 
 [e ( _setup ..  ]
-"52
+"60
+[; ;PICADC.c: 60: 
 [e ( _ADC (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
-"53
+"61
+[; ;PICADC.c: 61: 
 [e = . . _ADCON0bits 0 1 -> -> 1 `i `uc ]
-"54
+"62
+[; ;PICADC.c: 62:     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 [e :U 149 ]
 {
-"58
+"64
 }
 [e :U 148 ]
 [e $U 149  ]
 [e :U 150 ]
-"59
+"65
 [e ) -> 0 `i ]
 [e $UE 147  ]
-"60
+"66
 [e :UE 147 ]
 }
-"62
+"68
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"63
-[e = _ANSEL -> -> 0 `i `uc ]
-"64
-[e = _ANSELH -> -> 0 `i `uc ]
-"65
-[e = _TRISA -> -> 0 `i `uc ]
-"66
-[e = _PORTA -> -> 0 `i `uc ]
-"67
-[e = _TRISB -> -> 3 `i `uc ]
-"68
-[e = _PORTB -> -> 0 `i `uc ]
 "69
-[e = _TRISC -> -> 0 `i `uc ]
+[e = _ANSEL -> -> 0 `i `uc ]
 "70
-[e = _PORTC -> -> 0 `i `uc ]
+[e = _ANSELH -> -> 0 `i `uc ]
 "71
-[e = _TRISD -> -> 0 `i `uc ]
+[e = _TRISA -> -> 0 `i `uc ]
 "72
-[e = _PORTD -> -> 0 `i `uc ]
+[e = _TRISA -> -> 32 `i `uc ]
 "73
-[e = _TRISE -> -> 0 `i `uc ]
+[e = _PORTA -> -> 0 `i `uc ]
 "74
-[e = _PORTE -> -> 0 `i `uc ]
+[e = _TRISB -> -> 3 `i `uc ]
 "75
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+[e = _PORTB -> -> 0 `i `uc ]
 "76
-[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+[e = _TRISC -> -> 12 `i `uc ]
 "77
-[e = _contador -> -> 0 `i `uc ]
-"95
-[; ;PICADC.c: 95:     INTCONbits.GIE = 1;
+[e = _PORTC -> -> 0 `i `uc ]
+"78
+[e = _TRISD -> -> 0 `i `uc ]
+"79
+[e = _PORTD -> -> 0 `i `uc ]
+"80
+[e = _TRISE -> -> 0 `i `uc ]
+"81
+[e = _PORTE -> -> 0 `i `uc ]
+"82
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"96
-[; ;PICADC.c: 96:     INTCONbits.PEIE = 1;
+"83
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-"97
-[; ;PICADC.c: 97:     PIR1bits.SSPIF = 0;
+"84
+[e = _contador -> -> 0 `i `uc ]
+"87
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+"88
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+"89
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-"98
-[; ;PICADC.c: 98:     PIE1bits.SSPIE = 1;
+"90
 [e = . . _PIE1bits 0 3 -> -> 1 `i `uc ]
-"99
-[; ;PICADC.c: 99:     TRISAbits.TRISA5 = 1;
-[e = . . _TRISAbits 0 5 -> -> 1 `i `uc ]
-"101
-[; ;PICADC.c: 101:     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+"94
 [e ( _spiInit (4 , , , . `E1476 4 . `E1484 0 . `E1488 1 . `E1492 0 ]
-"102
-[; ;PICADC.c: 102: }
+"95
 [e :UE 151 ]
 }

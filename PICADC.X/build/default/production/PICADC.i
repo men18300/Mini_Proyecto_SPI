@@ -7,8 +7,7 @@
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "PICADC.c" 2
-
-
+# 10 "PICADC.c"
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2489,7 +2488,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 3 "PICADC.c" 2
+# 10 "PICADC.c" 2
 
 # 1 "./ADC.h" 1
 # 10 "./ADC.h"
@@ -2630,10 +2629,10 @@ typedef uint16_t uintptr_t;
 
 
 void ADC(uint8_t ANA, uint8_t justificado);
-# 4 "PICADC.c" 2
+# 11 "PICADC.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
-# 5 "PICADC.c" 2
+# 12 "PICADC.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
 
@@ -2732,7 +2731,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 6 "PICADC.c" 2
+# 13 "PICADC.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 1 3
 
@@ -2817,7 +2816,7 @@ extern char * ltoa(char * buf, long val, int base);
 extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
-# 7 "PICADC.c" 2
+# 14 "PICADC.c" 2
 
 # 1 "./SPI.h" 1
 # 17 "./SPI.h"
@@ -2854,13 +2853,12 @@ void spiInit(Spi_Type, Spi_Data_Sample, Spi_Clock_Idle, Spi_Transmit_Edge);
 void spiWrite(char);
 unsigned spiDataReady();
 char spiRead();
-# 8 "PICADC.c" 2
+# 15 "PICADC.c" 2
 
 
 
 
 uint8_t contador;
-unsigned short t;
 
 
 
@@ -2880,6 +2878,8 @@ unsigned short t;
 
 void setup(void);
 void __attribute__((picinterrupt(("")))) isr(void);
+
+
 
 
 void __attribute__((picinterrupt(("")))) isr(void) {
@@ -2903,8 +2903,6 @@ int main() {
     ADCON0bits.GO_nDONE = 1;
     while (1) {
 
-
-
     }
     return 0;
 }
@@ -2913,10 +2911,11 @@ void setup(void) {
     ANSEL = 0;
     ANSELH = 0;
     TRISA = 0;
+    TRISA=0b00100000;
     PORTA = 0;
     TRISB = 0b00000011;
     PORTB = 0;
-    TRISC = 0;
+    TRISC = 0b00001100;
     PORTC = 0;
     TRISD = 0;
     PORTD = 0;
@@ -2925,12 +2924,14 @@ void setup(void) {
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
     contador = 0;
-# 95 "PICADC.c"
+
+
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
     PIR1bits.SSPIF = 0;
     PIE1bits.SSPIE = 1;
-    TRISAbits.TRISA5 = 1;
+
+
 
     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 }

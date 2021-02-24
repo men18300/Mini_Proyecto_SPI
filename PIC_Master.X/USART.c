@@ -25,23 +25,23 @@ void UART_config() {
 }
 
 void UART_send_char(char bt) {
-    while (!TXIF); // hold the program till TX buffer is free
-    TXREG = bt; //Load the transmitter buffer with the received value
+    while (!TXIF); // ESPERAMOS HASTA QUE ESTE LIBRE LA BANDERA
+    TXREG = bt; //YA QUE ESTA LIBRE CARGAMOS EL DATO
 }
 
 void UART_send_string(char* st_pt) {
-    while (*st_pt) //if there is a char
-        UART_send_char(*st_pt++); //process it as a byte data
+    while (*st_pt) //SI HAY ALGUN CHAR
+        UART_send_char(*st_pt++); //Lo procesamos como un dato
 }
 
 char UART_get_char() {
-    if (RCSTAbits.OERR==1) // check for Error 
+    if (RCSTAbits.OERR==1) //Vemos si hay error
     {
-        RCSTAbits.CREN = 0; //If error -> Reset 
-        RCSTAbits.CREN = 1; //If error -> Reset 
+        RCSTAbits.CREN = 0; //Si lo hay reseteamos la recepcion
+        RCSTAbits.CREN = 1; 
     }
 
-    while (!PIR1bits.RCIF); // hold the program till RX buffer is free
-    return RCREG; //receive the value and send it to main function
+    while (!PIR1bits.RCIF); // esperamos hasta que la bandera este libre
+    return RCREG; //amos el dato de retorno
 
 }

@@ -1,15 +1,7 @@
-/*
- * File:   main.c
- * Author: Diego Gerardo Mencos Caal
- * Carne: 18300
- * Curso: Digital 2
- *
- * Created on 25 de enero de 2021, 12:01 PM
- */
-
-//******************************************************************************
-//Librer?as
-//******************************************************************************
+//Universidad del Valle de Guatemala
+//Digital 2
+//Diego Mencoss 18300
+//Slave 2-Contador
 
 #define _XTAL_FREQ 8000000
 #include <xc.h>
@@ -40,7 +32,7 @@
 #define incrementar PORTBbits.RB0
 #define decrementar PORTBbits.RB1
 uint8_t contador; //entero de 8 bits sin signo
-uint8_t CAMBIO; //entero de 8 bits sin signo
+
 
 
 //*****************************************************************************
@@ -56,11 +48,11 @@ void __interrupt() isr(void);
 void __interrupt() isr(void) {
     if (INTCONbits.RBIF == 1) {
         if (incrementar == 1) {
-            PORTD++;
+            PORTD++; //Incrementar el contador
             contador = PORTD;
 
         } else if (decrementar == 1) {
-            PORTD--;
+            PORTD--; //Decrementar el contador
             contador = PORTD;
 
         }
@@ -84,26 +76,25 @@ void __interrupt() isr(void) {
 void main(void) {
     setup();
     while (1) {
-
-        spiWrite(PORTD);
+        spiWrite(PORTD); //Estamos constantemente mandando el valor del PORTD
+                        //por la comunicacion SPI
     }
     return;
 }
 
 //*****************************************************************************
-//Configuraci?n
+//Configuracion
 //****************************************************************************
 
 void setup(void) {
 
-
     ANSEL = 0;
     ANSELH = 0;
-    TRISA = 0;
+    TRISA = 0b00100000;
     PORTA = 0;
     TRISB = 0b00000011;
     PORTB = 0;
-    TRISC = 0;
+    TRISC = 0b00011000;
     PORTC = 0;
     TRISD = 0;
     PORTD = 0;
@@ -118,10 +109,8 @@ void setup(void) {
 
     INTCONbits.GIE = 1; // Habilitamos interrupciones
     INTCONbits.PEIE = 1; // Habilitamos interrupciones PEIE
-    //PIR1bits.SSPIF = 0; // Borramos bandera interrupción MSSP
-    //PIE1bits.SSPIE = 1; // Habilitamos interrupción MSSP
-    TRISAbits.TRISA5 = 1; // Slave Select
 
+    //Configuramos la comunicacion SPI
     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 
 }

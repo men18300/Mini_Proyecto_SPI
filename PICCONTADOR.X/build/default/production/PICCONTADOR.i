@@ -7,7 +7,12 @@
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "PICCONTADOR.c" 2
-# 15 "PICCONTADOR.c"
+
+
+
+
+
+
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,7 +2493,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 15 "PICCONTADOR.c" 2
+# 7 "PICCONTADOR.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2623,7 +2628,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 16 "PICCONTADOR.c" 2
+# 8 "PICCONTADOR.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
 
@@ -2722,7 +2727,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 17 "PICCONTADOR.c" 2
+# 9 "PICCONTADOR.c" 2
 
 # 1 "./SPI.h" 1
 # 17 "./SPI.h"
@@ -2759,7 +2764,7 @@ void spiInit(Spi_Type, Spi_Data_Sample, Spi_Clock_Idle, Spi_Transmit_Edge);
 void spiWrite(char);
 unsigned spiDataReady();
 char spiRead();
-# 18 "PICCONTADOR.c" 2
+# 10 "PICCONTADOR.c" 2
 
 
 
@@ -2785,7 +2790,7 @@ char spiRead();
 
 
 uint8_t contador;
-uint8_t CAMBIO;
+
 
 
 
@@ -2818,13 +2823,12 @@ void __attribute__((picinterrupt(("")))) isr(void) {
     }
 
 }
-# 84 "PICCONTADOR.c"
+# 76 "PICCONTADOR.c"
 void main(void) {
     setup();
     while (1) {
-
-
         spiWrite(PORTD);
+
     }
     return;
 }
@@ -2834,7 +2838,6 @@ void main(void) {
 
 
 void setup(void) {
-
 
     ANSEL = 0;
     ANSELH = 0;
@@ -2857,9 +2860,8 @@ void setup(void) {
 
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
-
-
     TRISAbits.TRISA5 = 1;
+
 
     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 

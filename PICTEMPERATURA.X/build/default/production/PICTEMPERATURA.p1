@@ -46,8 +46,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1276: extern volatile ADCON0bits_t ADCON0bits __attribute__((address(0x01F)));
 [v _ADCON0bits `VS44 ~T0 @X0 0 e@31 ]
 [p mainexit ]
-"32 PICTEMPERATURA.c
-[; ;PICTEMPERATURA.c: 32:             PORTBbits.RB5 = 0;
+"39 PICTEMPERATURA.c
+[; ;PICTEMPERATURA.c: 39:             PORTBbits.RB4 = 1;
 [v _setup `(v ~T0 @X0 0 ef ]
 "12 ./ADC.h
 [; ;./ADC.h: 12: void ADC(uint8_t ANA, uint8_t justificado);
@@ -114,18 +114,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "482
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 482: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
 [v _INTCONbits `VS15 ~T0 @X0 0 e@11 ]
-"1422
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1422:     struct {
-[s S53 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S53 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 TRISA7 ]
-"1421
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1421: typedef union {
-[u S52 `S53 1 ]
-[n S52 . . ]
-"1433
-[; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1433: extern volatile TRISAbits_t TRISAbits __attribute__((address(0x085)));
-[v _TRISAbits `VS52 ~T0 @X0 0 e@133 ]
-"100 PICTEMPERATURA.c
+"108 PICTEMPERATURA.c
 [c E1476 32 33 34 35 36 37 .. ]
 [n E1476 . SPI_MASTER_OSC_DIV4 SPI_MASTER_OSC_DIV16 SPI_MASTER_OSC_DIV64 SPI_MASTER_TMR2 SPI_SLAVE_SS_EN SPI_SLAVE_SS_DIS  ]
 [c E1484 0 128 .. ]
@@ -371,213 +360,197 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"13 PICTEMPERATURA.c
-[; ;PICTEMPERATURA.c: 13: uint8_t contador;
-[; ;PICTEMPERATURA.c: 13:         PIR1bits.ADIF = 0;
-[v _contador `uc ~T0 @X0 1 e ]
-"14
-[; ;PICTEMPERATURA.c: 14: signed int temperatura;
-[; ;PICTEMPERATURA.c: 14:         _delay((unsigned long)((0.8)*(8000000/4000.0)));
+"21 PICTEMPERATURA.c
+[; ;PICTEMPERATURA.c: 21: signed int temperatura;
+[; ;PICTEMPERATURA.c: 21: int main() {
 [v _temperatura `i ~T0 @X0 1 e ]
-"18
-[; ;PICTEMPERATURA.c: 18: 
-[p x FOSC  =  HS  ]
-"19
-[; ;PICTEMPERATURA.c: 19: int main() {
-[p x WDTE  =  OFF  ]
-"20
-[; ;PICTEMPERATURA.c: 20:     setup();
-[p x PWRTE  =  OFF  ]
-"21
-[; ;PICTEMPERATURA.c: 21:     ADC(0, 0);
-[p x BOREN  =  ON  ]
-"22
-[; ;PICTEMPERATURA.c: 22:     ADCON0bits.GO_nDONE = 1;
-[p x LVP  =  OFF  ]
-"23
-[; ;PICTEMPERATURA.c: 23:     PORTBbits.RB3 = 0;
-[p x CPD  =  OFF  ]
-"24
-[; ;PICTEMPERATURA.c: 24:     PORTBbits.RB4 = 0;
-[p x WRT  =  OFF  ]
 "25
-[; ;PICTEMPERATURA.c: 25:     PORTBbits.RB5 = 0;
+[; ;PICTEMPERATURA.c: 25:     PORTBbits.RB3 = 0;
+[p x FOSC  =  HS  ]
+"26
+[; ;PICTEMPERATURA.c: 26:     PORTBbits.RB4 = 0;
+[p x WDTE  =  OFF  ]
+"27
+[; ;PICTEMPERATURA.c: 27:     PORTBbits.RB5 = 0;
+[p x PWRTE  =  OFF  ]
+"28
+[; ;PICTEMPERATURA.c: 28:     while (1) {
+[p x BOREN  =  ON  ]
+"29
+[; ;PICTEMPERATURA.c: 29: 
+[p x LVP  =  OFF  ]
+"30
+[; ;PICTEMPERATURA.c: 30:         spiWrite(temperatura);
+[p x CPD  =  OFF  ]
+"31
+[; ;PICTEMPERATURA.c: 31: 
+[p x WRT  =  OFF  ]
+"32
+[; ;PICTEMPERATURA.c: 32: 
 [p x CP  =  OFF  ]
 [v $root$_isr `(v ~T0 @X0 0 e ]
-"35
-[; ;PICTEMPERATURA.c: 35:             PORTBbits.RB4 = 1;
+"44
+[; ;PICTEMPERATURA.c: 44:             PORTBbits.RB4 = 0;
 [v _isr `(v ~T2 @X0 1 ef ]
 {
 [e :U _isr ]
 [f ]
-"37
-[; ;PICTEMPERATURA.c: 37: 
+"46
+[; ;PICTEMPERATURA.c: 46:         }
 [e $ ! == -> . . _PIR1bits 0 6 `i -> 1 `i 144  ]
 {
-"38
-[; ;PICTEMPERATURA.c: 38:         } else {
+"47
+[; ;PICTEMPERATURA.c: 47: 
 [e = _temperatura -> _ADRESH `i ]
-"39
-[; ;PICTEMPERATURA.c: 39:             PORTBbits.RB3 = 0;
+"48
+[; ;PICTEMPERATURA.c: 48:     }
 [e = _PORTD -> _temperatura `uc ]
-"40
-[; ;PICTEMPERATURA.c: 40:             PORTBbits.RB4 = 0;
+"49
+[; ;PICTEMPERATURA.c: 49:     return 0;
 [e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"41
-[; ;PICTEMPERATURA.c: 41:             PORTBbits.RB5 = 1;
+"50
+[; ;PICTEMPERATURA.c: 50: }
 [e ( __delay (1 -> * .0.8 / -> -> 8000000 `l `d .4000.0 `ul ]
-"42
-[; ;PICTEMPERATURA.c: 42:         }
+"51
+[; ;PICTEMPERATURA.c: 51: 
 [e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
-"43
-[; ;PICTEMPERATURA.c: 43: 
+"52
+[; ;PICTEMPERATURA.c: 52: void setup(void) {
 }
 [e :U 144 ]
-"44
-[; ;PICTEMPERATURA.c: 44:     }
+"53
+[; ;PICTEMPERATURA.c: 53:     ANSEL = 0;
 [e :UE 143 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"46
-[; ;PICTEMPERATURA.c: 46: }
+"55
+[; ;PICTEMPERATURA.c: 55:     TRISA=0b00100000;
 [v _main `(i ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"47
-[; ;PICTEMPERATURA.c: 47: 
+"56
+[; ;PICTEMPERATURA.c: 56:     PORTA = 0;
 [e ( _setup ..  ]
-"48
-[; ;PICTEMPERATURA.c: 48: void setup(void) {
+"57
+[; ;PICTEMPERATURA.c: 57:     TRISB = 0b00000011;
 [e ( _ADC (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
-"49
-[; ;PICTEMPERATURA.c: 49:     ANSEL = 0;
+"58
+[; ;PICTEMPERATURA.c: 58:     PORTB = 0;
 [e = . . _ADCON0bits 0 1 -> -> 1 `i `uc ]
-"50
-[; ;PICTEMPERATURA.c: 50:     ANSELH = 0;
+"59
+[; ;PICTEMPERATURA.c: 59:     TRISC = 0b00011000;
 [e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
-"51
-[; ;PICTEMPERATURA.c: 51:     TRISA = 0;
+"60
+[; ;PICTEMPERATURA.c: 60:     PORTC = 0;
 [e = . . _PORTBbits 0 4 -> -> 0 `i `uc ]
-"52
-[; ;PICTEMPERATURA.c: 52:     PORTA = 0;
+"61
+[; ;PICTEMPERATURA.c: 61:     TRISD = 0;
 [e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
-"53
-[; ;PICTEMPERATURA.c: 53:     TRISB = 0b00000011;
+"62
+[; ;PICTEMPERATURA.c: 62:     PORTD = 0;
 [e :U 147 ]
 {
-"54
-[; ;PICTEMPERATURA.c: 54:     PORTB = 0;
+"64
+[; ;PICTEMPERATURA.c: 64:     PORTE = 0;
 [e ( _spiWrite (1 -> _temperatura `uc ]
-"56
-[; ;PICTEMPERATURA.c: 56:     PORTC = 0;
+"67
+[; ;PICTEMPERATURA.c: 67: 
 [e $ ! >= -> _PORTD `i -> 113 `i 149  ]
 {
-"57
-[; ;PICTEMPERATURA.c: 57:     TRISD = 0;
+"68
+[; ;PICTEMPERATURA.c: 68:     temperatura=0;
 [e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
-"58
-[; ;PICTEMPERATURA.c: 58:     PORTD = 0;
+"69
+[; ;PICTEMPERATURA.c: 69: 
 [e = . . _PORTBbits 0 4 -> -> 0 `i `uc ]
-"59
-[; ;PICTEMPERATURA.c: 59:     TRISE = 0;
+"70
+[; ;PICTEMPERATURA.c: 70:     INTCONbits.GIE = 1;
 [e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
-"60
-[; ;PICTEMPERATURA.c: 60:     PORTE = 0;
+"71
+[; ;PICTEMPERATURA.c: 71:     INTCONbits.PEIE = 1;
 }
 [e $U 150  ]
 [e :U 149 ]
 [e $ ! & < -> _PORTD `i -> 113 `i >= -> _PORTD `i -> 98 `i 151  ]
 {
-"61
-[; ;PICTEMPERATURA.c: 61:     INTCONbits.GIE = 1;
+"72
+[; ;PICTEMPERATURA.c: 72: 
 [e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
-"62
-[; ;PICTEMPERATURA.c: 62:     INTCONbits.PEIE = 1;
+"73
+[; ;PICTEMPERATURA.c: 73: 
 [e = . . _PORTBbits 0 4 -> -> 1 `i `uc ]
-"63
-[; ;PICTEMPERATURA.c: 63: 
+"74
+[; ;PICTEMPERATURA.c: 74:     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 [e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
-"65
-[; ;PICTEMPERATURA.c: 65:     temperatura=0;
+"76
+[; ;PICTEMPERATURA.c: 76: }
 }
 [e $U 152  ]
 [e :U 151 ]
 {
-"66
-[; ;PICTEMPERATURA.c: 66: 
+"77
 [e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
-"67
-[; ;PICTEMPERATURA.c: 67:     INTCONbits.GIE = 1;
+"78
 [e = . . _PORTBbits 0 4 -> -> 0 `i `uc ]
-"68
-[; ;PICTEMPERATURA.c: 68:     INTCONbits.PEIE = 1;
+"79
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
-"69
-[; ;PICTEMPERATURA.c: 69: 
+"80
 }
 [e :U 152 ]
 [e :U 150 ]
-"71
-[; ;PICTEMPERATURA.c: 71:     TRISAbits.TRISA5 = 1;
+"82
 }
 [e :U 146 ]
 [e $U 147  ]
 [e :U 148 ]
-"72
-[; ;PICTEMPERATURA.c: 72: 
+"83
 [e ) -> 0 `i ]
 [e $UE 145  ]
-"73
-[; ;PICTEMPERATURA.c: 73:     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+"84
 [e :UE 145 ]
 }
-"75
-[; ;PICTEMPERATURA.c: 75: }
+"86
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"76
-[e = _ANSEL -> -> 0 `i `uc ]
-"77
-[e = _ANSELH -> -> 0 `i `uc ]
-"78
-[e = _TRISA -> -> 0 `i `uc ]
-"79
-[e = _PORTA -> -> 0 `i `uc ]
-"80
-[e = _TRISB -> -> 3 `i `uc ]
-"81
-[e = _PORTB -> -> 0 `i `uc ]
-"82
-[e = _TRISC -> -> 0 `i `uc ]
-"83
-[e = _PORTC -> -> 0 `i `uc ]
-"84
-[e = _TRISD -> -> 0 `i `uc ]
-"85
-[e = _PORTD -> -> 0 `i `uc ]
-"86
-[e = _TRISE -> -> 0 `i `uc ]
 "87
-[e = _PORTE -> -> 0 `i `uc ]
+[e = _ANSEL -> -> 0 `i `uc ]
 "88
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+[e = _ANSELH -> -> 0 `i `uc ]
 "89
-[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+[e = _TRISA -> -> 32 `i `uc ]
+"90
+[e = _PORTA -> -> 0 `i `uc ]
 "91
-[e = _contador -> -> 0 `i `uc ]
+[e = _TRISB -> -> 3 `i `uc ]
 "92
-[e = _temperatura -> 0 `i ]
+[e = _PORTB -> -> 0 `i `uc ]
+"93
+[e = _TRISC -> -> 24 `i `uc ]
 "94
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+[e = _PORTC -> -> 0 `i `uc ]
 "95
-[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+[e = _TRISD -> -> 0 `i `uc ]
+"96
+[e = _PORTD -> -> 0 `i `uc ]
+"97
+[e = _TRISE -> -> 0 `i `uc ]
 "98
-[e = . . _TRISAbits 0 5 -> -> 1 `i `uc ]
+[e = _PORTE -> -> 0 `i `uc ]
+"99
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
 "100
-[e ( _spiInit (4 , , , . `E1476 4 . `E1484 0 . `E1488 1 . `E1492 0 ]
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
 "102
+[e = _temperatura -> 0 `i ]
+"104
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+"105
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+"108
+[e ( _spiInit (4 , , , . `E1476 4 . `E1484 0 . `E1488 1 . `E1492 0 ]
+"110
 [e :UE 153 ]
 }

@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 16F887 ]
 [d frameptr 0 ]
-"100 C:\Users\pc\Desktop\UVG\7 semestre\Digital 2\Mini_Proyecto_SPI\PICTEMPERATURA.X\PICTEMPERATURA.c
+"108 C:\Users\pc\Desktop\UVG\7 semestre\Digital 2\Mini_Proyecto_SPI\PICTEMPERATURA.X\PICTEMPERATURA.c
 [e E1476 . `uc
 SPI_MASTER_OSC_DIV4 32
 SPI_MASTER_OSC_DIV16 33
@@ -55,11 +55,11 @@ SPI_ACTIVE_2_IDLE 64
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"35 C:\Users\pc\Desktop\UVG\7 semestre\Digital 2\Mini_Proyecto_SPI\PICTEMPERATURA.X\PICTEMPERATURA.c
+"44 C:\Users\pc\Desktop\UVG\7 semestre\Digital 2\Mini_Proyecto_SPI\PICTEMPERATURA.X\PICTEMPERATURA.c
 [v _isr isr `II(v  1 e 1 0 ]
-"46
+"55
 [v _main main `(i  1 e 2 0 ]
-"75
+"86
 [v _setup setup `(v  1 e 1 0 ]
 "12 C:\Users\pc\Desktop\UVG\7 semestre\Digital 2\Mini_Proyecto_SPI\PICTEMPERATURA.X\SPI.c
 [v _spiInit spiInit `(v  1 e 1 0 ]
@@ -148,7 +148,7 @@ SPI_ACTIVE_2_IDLE 64
 [v _ADCON0bits ADCON0bits `VES69  1 e 1 @31 ]
 "1416
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
-[s S174 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S271 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -158,11 +158,11 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 TRISA7 1 0 :1:7 
 ]
 "1433
-[u S183 . 1 `S174 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES183  1 e 1 @133 ]
+[u S280 . 1 `S271 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES280  1 e 1 @133 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-[s S392 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S371 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -172,23 +172,23 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "1495
-[u S401 . 1 `S392 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES401  1 e 1 @134 ]
+[u S380 . 1 `S371 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES380  1 e 1 @134 ]
 "1540
 [v _TRISC TRISC `VEuc  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S379 . 1 `uc 1 TRISE0 1 0 :1:0 
+[s S358 . 1 `uc 1 TRISE0 1 0 :1:0 
 `uc 1 TRISE1 1 0 :1:1 
 `uc 1 TRISE2 1 0 :1:2 
 `uc 1 TRISE3 1 0 :1:3 
 ]
 "1677
-[u S384 . 1 `S379 1 . 1 0 ]
-[v _TRISEbits TRISEbits `VES384  1 e 1 @137 ]
-[s S328 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[u S363 . 1 `S358 1 . 1 0 ]
+[v _TRISEbits TRISEbits `VES363  1 e 1 @137 ]
+[s S307 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -197,11 +197,11 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 ADIE 1 0 :1:6 
 ]
 "1718
-[u S336 . 1 `S328 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES336  1 e 1 @140 ]
+[u S315 . 1 `S307 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES315  1 e 1 @140 ]
 "2177
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
-[s S491 . 1 `uc 1 BF 1 0 :1:0 
+[s S478 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -211,51 +211,51 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 SMP 1 0 :1:7 
 ]
 "2231
-[s S500 . 1 `uc 1 . 1 0 :2:0 
+[s S487 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S505 . 1 `uc 1 . 1 0 :2:0 
+[s S492 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DATA 1 0 :1:5 
 ]
-[s S511 . 1 `uc 1 . 1 0 :2:0 
+[s S498 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S516 . 1 `uc 1 . 1 0 :2:0 
+[s S503 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S521 . 1 `uc 1 . 1 0 :2:0 
+[s S508 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S526 . 1 `uc 1 . 1 0 :2:0 
+[s S513 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[u S531 . 1 `S491 1 . 1 0 `S500 1 . 1 0 `S505 1 . 1 0 `S511 1 . 1 0 `S516 1 . 1 0 `S521 1 . 1 0 `S526 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES531  1 e 1 @148 ]
-[s S313 . 1 `uc 1 . 1 0 :4:0 
+[u S518 . 1 `S478 1 . 1 0 `S487 1 . 1 0 `S492 1 . 1 0 `S498 1 . 1 0 `S503 1 . 1 0 `S508 1 . 1 0 `S513 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES518  1 e 1 @148 ]
+[s S292 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 VCFG0 1 0 :1:4 
 `uc 1 VCFG1 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 ADFM 1 0 :1:7 
 ]
 "2991
-[u S319 . 1 `S313 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES319  1 e 1 @159 ]
+[u S298 . 1 `S292 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES298  1 e 1 @159 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
-[s S358 . 1 `uc 1 ANS0 1 0 :1:0 
+[s S337 . 1 `uc 1 ANS0 1 0 :1:0 
 `uc 1 ANS1 1 0 :1:1 
 `uc 1 ANS2 1 0 :1:2 
 `uc 1 ANS3 1 0 :1:3 
@@ -265,11 +265,11 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 ANS7 1 0 :1:7 
 ]
 "3404
-[u S367 . 1 `S358 1 . 1 0 ]
-[v _ANSELbits ANSELbits `VES367  1 e 1 @392 ]
+[u S346 . 1 `S337 1 . 1 0 ]
+[v _ANSELbits ANSELbits `VES346  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
-[s S413 . 1 `uc 1 ANS8 1 0 :1:0 
+[s S392 . 1 `uc 1 ANS8 1 0 :1:0 
 `uc 1 ANS9 1 0 :1:1 
 `uc 1 ANS10 1 0 :1:2 
 `uc 1 ANS11 1 0 :1:3 
@@ -277,20 +277,18 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 ANS13 1 0 :1:5 
 ]
 "3464
-[u S420 . 1 `S413 1 . 1 0 ]
-[v _ANSELHbits ANSELHbits `VES420  1 e 1 @393 ]
+[u S399 . 1 `S392 1 . 1 0 ]
+[v _ANSELHbits ANSELHbits `VES399  1 e 1 @393 ]
 "4457
 [v _TRISC3 TRISC3 `VEb  1 e 0 @1083 ]
 "4463
 [v _TRISC5 TRISC5 `VEb  1 e 0 @1085 ]
-"13 C:\Users\pc\Desktop\UVG\7 semestre\Digital 2\Mini_Proyecto_SPI\PICTEMPERATURA.X\PICTEMPERATURA.c
-[v _contador contador `uc  1 e 1 0 ]
-"14
+"21 C:\Users\pc\Desktop\UVG\7 semestre\Digital 2\Mini_Proyecto_SPI\PICTEMPERATURA.X\PICTEMPERATURA.c
 [v _temperatura temperatura `i  1 e 2 0 ]
-"46
+"55
 [v _main main `(i  1 e 2 0 ]
 {
-"73
+"84
 } 0
 "34 C:\Users\pc\Desktop\UVG\7 semestre\Digital 2\Mini_Proyecto_SPI\PICTEMPERATURA.X\SPI.c
 [v _spiWrite spiWrite `(v  1 e 1 0 ]
@@ -301,10 +299,10 @@ SPI_ACTIVE_2_IDLE 64
 [v spiWrite@dat dat `uc  1 a 1 4 ]
 "37
 } 0
-"75 C:\Users\pc\Desktop\UVG\7 semestre\Digital 2\Mini_Proyecto_SPI\PICTEMPERATURA.X\PICTEMPERATURA.c
+"86 C:\Users\pc\Desktop\UVG\7 semestre\Digital 2\Mini_Proyecto_SPI\PICTEMPERATURA.X\PICTEMPERATURA.c
 [v _setup setup `(v  1 e 1 0 ]
 {
-"102
+"110
 } 0
 "12 C:\Users\pc\Desktop\UVG\7 semestre\Digital 2\Mini_Proyecto_SPI\PICTEMPERATURA.X\SPI.c
 [v _spiInit spiInit `(v  1 e 1 0 ]
@@ -315,7 +313,7 @@ SPI_ACTIVE_2_IDLE 64
 [v spiInit@sClockIdle sClockIdle `E1276  1 p 1 5 ]
 [v spiInit@sTransmitEdge sTransmitEdge `E1280  1 p 1 6 ]
 "14
-[v spiInit@sType sType `E1264  1 a 1 0 ]
+[v spiInit@sType sType `E1264  1 a 1 7 ]
 "27
 } 0
 "4 C:\Users\pc\Desktop\UVG\7 semestre\Digital 2\Mini_Proyecto_SPI\PICTEMPERATURA.X\ADC.c
@@ -325,11 +323,11 @@ SPI_ACTIVE_2_IDLE 64
 [v ADC@ANA ANA `uc  1 a 1 wreg ]
 [v ADC@justificado justificado `uc  1 p 1 4 ]
 "7
-[v ADC@ANA ANA `uc  1 a 1 0 ]
+[v ADC@ANA ANA `uc  1 a 1 7 ]
 "170
 } 0
-"35 C:\Users\pc\Desktop\UVG\7 semestre\Digital 2\Mini_Proyecto_SPI\PICTEMPERATURA.X\PICTEMPERATURA.c
+"44 C:\Users\pc\Desktop\UVG\7 semestre\Digital 2\Mini_Proyecto_SPI\PICTEMPERATURA.X\PICTEMPERATURA.c
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"44
+"53
 } 0

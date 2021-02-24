@@ -1,3 +1,10 @@
+//Universidad del Valle de Guatemala
+//Digital 2
+//Diego Mencoss 18300
+//Slave 1-ADC
+
+
+
 #define _XTAL_FREQ 8000000
 
 #include <xc.h>
@@ -8,9 +15,8 @@
 #include "SPI.h"
 
 
-
+//Definimos variables
 uint8_t contador;
-unsigned short t;
 
 
 // BEGIN CONFIG
@@ -27,11 +33,13 @@ unsigned short t;
 
 
 
-
+//Prototipos de funciones
 void setup(void);
 void __interrupt() isr(void);
-//unsigned short escribiryleer(unsigned short x);
 
+
+
+//Configuramos interrupciones
 void __interrupt() isr(void) {
 
     if (PIR1bits.ADIF == 1) {
@@ -49,7 +57,7 @@ void __interrupt() isr(void) {
 
 int main() {
     setup();
-    ADC(0, 0);
+    ADC(0, 0); //Seleccionamos canal AN0 y justificado a la izquierda
     ADCON0bits.GO_nDONE = 1;
     while (1) {
 
@@ -61,10 +69,11 @@ void setup(void) {
     ANSEL = 0;
     ANSELH = 0;
     TRISA = 0;
+    TRISA=0b00100000;
     PORTA = 0;
     TRISB = 0b00000011;
     PORTB = 0;
-    TRISC = 0;
+    TRISC = 0b00011000;
     PORTC = 0;
     TRISD = 0;
     PORTD = 0;
@@ -79,7 +88,8 @@ void setup(void) {
     INTCONbits.PEIE = 1; // Habilitamos interrupciones PEIE
     PIR1bits.SSPIF = 0; // Borramos bandera interrupción MSSP
     PIE1bits.SSPIE = 1; // Habilitamos interrupción MSSP
-    TRISAbits.TRISA5 = 1; // Slave Select
 
+
+    //Configuramos la comunicacion SPI
     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 }

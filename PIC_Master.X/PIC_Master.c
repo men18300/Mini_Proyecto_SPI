@@ -1,3 +1,10 @@
+//Universidad del Valle de Guatemala
+//Digital 2
+//Diego Mencoss 18300
+//Master
+
+
+
 #define _XTAL_FREQ 8000000
 
 #define RS RD2
@@ -17,8 +24,7 @@
 
 
 
-
-uint8_t contador;
+//Definicion de variables
 uint8_t slave1;
 uint8_t slave2;
 int8_t slave3;
@@ -39,11 +45,6 @@ char decenaVtemperatura;
 char centenaVtemperatura;
 char signo;
 
-
-
-
-
-
 // BEGIN CONFIG
 #pragma config FOSC = HS // Oscillator Selection bits (HS oscillator)
 #pragma config WDTE = OFF // Watchdog Timer Enable bit (WDT enabled)
@@ -59,37 +60,44 @@ char signo;
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
 
-
+//Prototipo de FUnciones
 void setup(void);
 void __interrupt() isr(void);
 void conv_Numero_A_String(uint8_t x);
 void conv_Numero_A_StringContador(uint8_t x);
 void conv_Numero_A_StringTemperatura(uint8_t x);
 
+
+
+//Interrupciones
+
 void __interrupt() isr(void) {
 
     if (PIR1bits.RCIF == 1) {
-        valorRX = UART_get_char();
+        valorRX = UART_get_char(); //Aqui recibimos el dato de la recepcion
         __delay_ms(0.4);
         PIR1bits.RCIF = 0;
     }
 }
 
 void main() {
-    setup();
-    Lcd_Init();
-    Lcd_Clear();
-    UART_config();
+    setup(); //Llamamos a la configuracion
+    Lcd_Init(); //Inicializamos el LCD
+    Lcd_Clear(); //Limpiamos el LCD
+    UART_config(); //Configuramos la transmision y recepcion USART
+
+    //Menu cual nos da la opcion de seleccinar que variable queremos ver
 
     UART_send_string("PRESIONE: ");
     UART_send_char(13);
-    UART_send_string("A) Para mostrar el ADC");
+    UART_send_string(" 'a'- Para mostrar el ADC");
     UART_send_char(13);
-    UART_send_string("B) Para mostrar el contador");
+    UART_send_string(" 'b'- Para mostrar el contador");
     UART_send_char(13);
-    UART_send_string("C)Para mostrar el Termometro");
+    UART_send_string(" 'c'- Para mostrar el Termometro");
     UART_send_char(13);
 
+    //Mostramos en la LCD los comando S1,S2,S3
     Lcd_Set_Cursor(1, 1);
     Lcd_Write_String("S1:");
     Lcd_Set_Cursor(1, 8);
@@ -100,16 +108,20 @@ void main() {
 
     while (1) {
 
-        PORTCbits.RC2 = 0; //Slave Select
+
+
+        //Llamamos al primer SLAVE 1-ADC
+        PORTCbits.RC2 = 0; //Slave Select 1
         __delay_ms(1);
 
         spiWrite(PORTB);
-        slave1 = spiRead();
+        slave1 = spiRead(); //Copiamos a la variable el ADC
 
         __delay_ms(1);
-        PORTCbits.RC2 = 1; //Slave Deselect 
+        PORTCbits.RC2 = 1; //Slave Deselect 1
 
-
+        //Convertimos el valor en distintos char para poder desplegarlos en la 
+        //LCD
         conv_Numero_A_String(slave1);
         Lcd_Set_Cursor(2, 1);
         Lcd_Write_Char(unidadV);
@@ -124,16 +136,20 @@ void main() {
         Lcd_Write_Char(centenaV);
 
 
-
-        PORTCbits.RC1 = 0; //Slave Select
+        //Llamamos al segundo SLAVE 2-Contador
+        PORTCbits.RC1 = 0; //Slave Select 2-Contador
         __delay_ms(1);
 
         spiWrite(1);
         slave2 = spiRead();
 
         __delay_ms(1);
-        PORTCbits.RC1 = 1; //Slave Deselect 
+        PORTCbits.RC1 = 1; //Slave Deselect 2
 
+
+
+        //Convertimos el valor en distintos char para poder desplegarlos en la 
+        //LCD
         conv_Numero_A_StringContador(slave2);
         Lcd_Set_Cursor(2, 8);
         Lcd_Write_Char(unidadVcontador);
@@ -145,18 +161,21 @@ void main() {
         Lcd_Write_Char(centenaVcontador);
 
 
-
-        PORTCbits.RC0 = 0; //Slave Select
+        //Llamamos al tercer SLAVE 3-Termometro
+        PORTCbits.RC0 = 0; //Slave Select 3-Termometro
         __delay_ms(1);
 
         spiWrite(1);
         slave3 = spiRead();
 
         __delay_ms(1);
-        PORTCbits.RC0 = 1; //Slave Deselect 
+        PORTCbits.RC0 = 1; //Slave Deselect 3
 
+
+
+        //Convertimos el valor en distintos char para poder desplegarlos en la 
+        //LCD
         conv_Numero_A_StringTemperatura(slave3);
-
         Lcd_Set_Cursor(2, 13);
         Lcd_Write_Char(signo);
 
@@ -170,28 +189,30 @@ void main() {
         Lcd_Write_Char(centenaVtemperatura);
 
 
-
+        //Ya que en la interrupcion recibimos el valor de la terminal virtual
+        //vamos a ver que valor quiere desplegar el usuario y lo mandaremos
+        //gracias a la transmision
         if (valorRX == 'a') {
-
             UART_send_string("Valor del ADC:");
             UART_send_char(32);
-            UART_send_char(unidadV);
+            UART_send_char(unidadV); //Copiamos los mismos valores que en la LCD
             UART_send_char(46);
             UART_send_char(decenaV);
             UART_send_char(centenaV);
-            RCREG = 0;
+            RCREG = 0; //Ponemos en 0 para que no vuelva a entrar al if
             valorRX = 0;
             UART_send_char(13);
             UART_send_char(13);
 
             UART_send_string("PRESIONE: ");
             UART_send_char(13);
-            UART_send_string("A) Para mostrar el ADC");
+            UART_send_string(" 'a'- Para mostrar el ADC");
             UART_send_char(13);
-            UART_send_string("B) Para mostrar el contador");
+            UART_send_string(" 'b'- Para mostrar el contador");
             UART_send_char(13);
-            UART_send_string("C)Para mostrar el Termometro");
+            UART_send_string(" 'c'- Para mostrar el Termometro");
             UART_send_char(13);
+
 
 
         } else if (valorRX == 'b') {
@@ -204,17 +225,18 @@ void main() {
             RCREG = 0;
             valorRX = 0;
 
-                        UART_send_char(13);
+            UART_send_char(13);
             UART_send_char(13);
 
             UART_send_string("PRESIONE: ");
             UART_send_char(13);
-            UART_send_string("A) Para mostrar el ADC");
+            UART_send_string(" 'a'- Para mostrar el ADC");
             UART_send_char(13);
-            UART_send_string("B) Para mostrar el contador");
+            UART_send_string(" 'b'- Para mostrar el contador");
             UART_send_char(13);
-            UART_send_string("C)Para mostrar el Termometro");
+            UART_send_string(" 'c'- Para mostrar el Termometro");
             UART_send_char(13);
+
 
         } else if (valorRX == 'c') {
 
@@ -232,12 +254,13 @@ void main() {
 
             UART_send_string("PRESIONE: ");
             UART_send_char(13);
-            UART_send_string("A) Para mostrar el ADC");
+            UART_send_string(" 'a'- Para mostrar el ADC");
             UART_send_char(13);
-            UART_send_string("B) Para mostrar el contador");
+            UART_send_string(" 'b'- Para mostrar el contador");
             UART_send_char(13);
-            UART_send_string("C)Para mostrar el Termometro");
+            UART_send_string(" 'c'- Para mostrar el Termometro");
             UART_send_char(13);
+
 
         }
 
@@ -251,34 +274,31 @@ void setup(void) {
     ANSEL = 0;
     ANSELH = 0;
     TRISA = 0;
-
     PORTA = 0;
     TRISB = 0b00000011;
     PORTB = 0;
-    TRISC = 0;
-    TRISCbits.TRISC4 = 1;
-    TRISCbits.TRISC7 = 1;
+    TRISC = 0b10010000;
     PORTC = 0;
     TRISD = 0;
     PORTD = 0;
     TRISE = 0;
     PORTE = 0;
     INTCONbits.GIE = 1; //Habilitamos las interrupciones
-    INTCONbits.PEIE = 1;
+    INTCONbits.PEIE = 1; //Habilitamos las interrupciones perifericas
 
-    contador = 0;
-
-
-    PORTCbits.RC2 = 1;
+    PORTCbits.RC2 = 1; //Desabilitamos los SS
     PORTCbits.RC1 = 1;
     PORTCbits.RC0 = 1;
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+    //Configuracion de la comunicacion SPI
 
 
-    PIR1bits.RCIF = 0;
+    PIR1bits.RCIF = 0; //Apagamos la bandera del RX
 
 
 }
+
+//Funcion para convertir en char los valores del slave 1
 
 void conv_Numero_A_String(uint8_t x) {
 
@@ -292,6 +312,9 @@ void conv_Numero_A_String(uint8_t x) {
     decenaV = decenaV + 48;
 }
 
+
+//Funcion para convertir en char los valores del slave 2
+
 void conv_Numero_A_StringContador(uint8_t x) {
 
     valor = x;
@@ -304,11 +327,15 @@ void conv_Numero_A_StringContador(uint8_t x) {
     decenaVcontador = decenaVcontador + 48;
 }
 
+
+//Funcion para convertir en char los valores del slave 3
+
 void conv_Numero_A_StringTemperatura(uint8_t x) {
 
 
     if (x < 68) {
-        signo = 45;
+        //68 es el "0" del termometro
+        signo = 45; //Para poner un - en la LCD y la terminal
         valor = x * 0.80;
         valor = valor - 55;
         valor = valor*-1;
@@ -328,7 +355,7 @@ void conv_Numero_A_StringTemperatura(uint8_t x) {
         centenaVtemperatura = 48;
 
     } else {
-        signo = 43;
+        signo = 43; //Para poner un + en la LCD y la terminal
         valor = x;
         valor = valor * 0.80;
         valor = valor - 55;
