@@ -2841,11 +2841,11 @@ void setup(void) {
 
     ANSEL = 0;
     ANSELH = 0;
-    TRISA = 0;
+    TRISA = 0b00100000;
     PORTA = 0;
     TRISB = 0b00000011;
     PORTB = 0;
-    TRISC = 0;
+    TRISC = 0b00011000;
     PORTC = 0;
     TRISD = 0;
     PORTD = 0;
@@ -2860,7 +2860,6 @@ void setup(void) {
 
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
-    TRISAbits.TRISA5 = 1;
 
 
     spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);

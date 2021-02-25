@@ -114,7 +114,7 @@ void main() {
         PORTCbits.RC2 = 0; //Slave Select 1
         __delay_ms(1);
 
-        spiWrite(PORTB);
+        spiWrite(1);
         slave1 = spiRead(); //Copiamos a la variable el ADC
 
         __delay_ms(1);
